@@ -7,6 +7,6 @@ const loginValues = function (emailv, passwordv) {
   
 }
 
-var fu = function(){
+var fun = function(){
 
 }
