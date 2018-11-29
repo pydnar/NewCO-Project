@@ -6,3 +6,7 @@ $(document).ready(function () {
 const loginValues = function (emailv, passwordv) {
   
 }
+
+var fun = function(){
+
+}
