@@ -25,14 +25,26 @@
     <title>Custom Materialize Theme</title>
 </head>
 
-<body>
-
     <body>
         {{{ body }}}
     </body>
 
+<script >
+      $(document).ready(function () {
+    // Init Side nav
+    $('.button-collapse').sideNav();
+
+    // Init Slider
+    $('.slider').slider({
+      indicators: false,
+      height: 500,
+      transition: 500,
+      interval: 6000
+    });
+
+    //Hide all elements while on the index screen
 
 
-</body>
-
+  });
+</script>
 </html>
