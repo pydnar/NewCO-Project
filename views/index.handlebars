@@ -1,7 +1,8 @@
-{{> nav }} {{> slider }} 
+{{> nav }} {{> slider }}
 <div class="container">
   <div class="col s12">
-    <h3>Index</h3>
+    <h3></h3>
+    <a href="/home" class="btn btn-large">Get Started</a>
   </div>
 
 </div>
@@ -18,17 +19,14 @@
       transition: 500,
       interval: 6000
     });
-    
+
     //Hide all elements while on the index screen
-    const hideform = function () {
-      $(".index").hide();
-      $(".home").hide();
-      $(".admin").hide();
-      $(".customer").hide();
-      $(".site").hide();
-    };
-    hideform();
+
 
   });
+
+</script>
+
+<script src="/assets/js/nav.js">
 
 </script>
