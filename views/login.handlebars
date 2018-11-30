@@ -1,7 +1,7 @@
 {{> nav }}
 <div class="container">
     <h3>Login</h3>
-    <div class="col s12">
+    <div class="col s12 logindiv">
         <form id="form_data">
 
             <div class="form-group">
@@ -17,5 +17,22 @@
     </div>
 </div>
 <script src="/assets/js/auth.js">
+
+
+</script>
+
+<script>
+    const homepage = function () {
+
+        $(".home").show();
+        $(".admin").hide();
+        $(".customer").hide();
+        $(".site").hide();
+        $(".index").hide();
+        $(".login").hide();
+        //Test
+        $(".test").hide();
+    };
+    homepage();
 
 </script>

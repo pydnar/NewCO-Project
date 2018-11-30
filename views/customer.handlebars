@@ -1,6 +1,50 @@
 {{> nav }}
+
+
 <div class="container">
-        <div class="col s12">
-            <h3>Customer</h3>
-        </div>
+    <div class="col s12">
+        <h3>Customer</h3>
+    </div>
 </div>
+<div class="row">
+    <span id="listmessage" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Show Location</span>
+    <div>
+
+
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" onclick="closeNav()">Site Location</a>
+            <a href="#"></a>
+        </div>
+
+
+
+        <script>
+            document.getElementById("mySidenav").style.width = "250px";
+            function openNav() {
+                $("#listmessage").hide();
+                document.getElementById("mySidenav").style.width = "250px";
+
+            }
+            function closeNav() {
+                $("#listmessage").show();
+                document.getElementById("mySidenav").style.width = "0";
+            }
+
+        </script>
+        <script>
+            const customerpage = function () {
+
+                $(".home").show();
+                $(".admin").hide();
+                $(".customer").hide();
+                $(".site").hide();
+                $(".index").hide();
+                $(".login").hide();
+                //Test
+                $(".test").hide();
+            };
+            customerpage();
+
+        </script>

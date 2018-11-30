@@ -26,6 +26,7 @@ $(document).ready(() => {
       password
     };
     //
+    
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -134,5 +135,5 @@ $(document).ready(() => {
 });
 //Used for test
 const loginTest = function (emailv, passwordv) {
-
+  //
 }

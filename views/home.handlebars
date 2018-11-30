@@ -1,6 +1,32 @@
-{{> nav }}
-<div class="container">
-        <div class="col s12">
-            <h3>Home</h3>
-        </div>
+{{> nav }} {{> indexsection }}
+<div id="reqister" class="container">
+    <div class="col s12">
+        <h3>MY Site</h3>
+        <h3>My Mananger</h3>
+        <h3>My location</h3>
+        <h3>My SSO</h3>
+    </div>
 </div>
+
+
+<script>
+    const homepage = function () {
+
+        $("#reqister").hide();
+        $(".home").hide();
+        $(".admin").hide();
+        $(".customer").show();
+        $(".site").hide();
+        $(".index").hide();
+        $(".login").hide();
+        //Test
+        $(".test").hide();
+    };
+    homepage();
+
+    //This id is found in the indexsection
+    $("#reg-site").on("click", function () {
+        $("#reqister").toggle();
+    });
+
+</script>
