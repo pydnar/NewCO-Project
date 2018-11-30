@@ -1,25 +1,34 @@
-{{> nav }}
-{{> slider }}
-{{> indexsection }}
+{{> nav }} {{> slider }} 
 <div class="container">
-        <div class="col s12">
-            <h3>Index</h3>
-        </div>
-        
+  <div class="col s12">
+    <h3>Index</h3>
+  </div>
+
 </div>
 
 <script>
-      $(document).ready(function () {
-      // Init Side nav
-      $('.button-collapse').sideNav();
+  $(document).ready(function () {
+    // Init Side nav
+    $('.button-collapse').sideNav();
 
-      // Init Slider
-      $('.slider').slider({
-        indicators: false,
-        height: 500,
-        transition: 500,
-        interval: 6000
-      });
-
+    // Init Slider
+    $('.slider').slider({
+      indicators: false,
+      height: 500,
+      transition: 500,
+      interval: 6000
     });
+    
+    //Hide all elements while on the index screen
+    const hideform = function () {
+      $(".index").hide();
+      $(".home").hide();
+      $(".admin").hide();
+      $(".customer").hide();
+      $(".site").hide();
+    };
+    hideform();
+
+  });
+
 </script>
