@@ -6,7 +6,8 @@ var router = express.Router();
 var model = require("../models/model.js");
 
 router.get("/", function (req, res) {
-    res.render("index");
+    var ThisnameDoesnotmatter = {Lastname: 'Megatron'};
+    res.render("index", ThisnameDoesnotmatter);
 });
 
 router.get("/index", function (req, res) {
