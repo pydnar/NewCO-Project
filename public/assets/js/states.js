@@ -1,6 +1,4 @@
-var see = require("simmigonstatespackage");
-alert("Test");
-alert(see.states);
+alert(states);
 // import myModule from 'simmigonstatespackage';
 
 // alert(myModule.states);

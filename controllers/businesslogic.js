@@ -4,11 +4,10 @@ var express = require("express");
 var router = express.Router();
 
 var model = require("../models/model.js");
-var see = require("simmigonstatespackage");
+var states = require("simmigonstatespackage");
 
 
 router.get("/", function (req, res) {
-    var listing = JSON.stringify(see);
 
     var ThisnameDoesnotmatter = { Lastname: 'Megatron' };
     res.render("index", ThisnameDoesnotmatter);
@@ -35,7 +34,11 @@ router.get("/customer", function (req, res) {
 });
 
 router.get("/site", function (req, res) {
-    res.render("site", see);
+
+    var state = JSON.stringify(states);
+    var ThisnameDoesnotmatter = { findstates: state };
+
+    res.render("site", ThisnameDoesnotmatter);
 });
 
 // Step 2 add the controller for the page: step 1 is in the /partial/users/nav folder
