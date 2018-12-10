@@ -1,5 +1,6 @@
 {{> nav }}
 
+
 <div class="container">
     <div class="col s12">
         <h3>Customer Site?</h3>
@@ -329,22 +330,23 @@
 <!--Import jQuery before materialize.js-->
 
 
-  <script type="text/javascript" src="/assets/js/states.js">
-  </script>
+<script type="text/javascript" src="/assets/js/states.js">
+
+</script>
 
 
 <script>
-    
     $(document).ready(function () {
+        var states = "{{ findstates }}";
 
-    
+        states = JSON.parse(states.replace(/&quot;/g, '"'));
         $('.autocomplete').autocomplete({
-            data: {
-             
-            },
-            onAutocomplete: function (state) {
-                alert(state);
+            data:
+            states,
+            onAutocomplete: function (STATE) {
+                alert(STATE);
             }
+
 
         });
 

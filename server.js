@@ -4,8 +4,6 @@ var helmet = require("helmet");
 
 var PORT = process.env.PORT || 3000;
 var app = express();
-// app.use('/state', express.static(__dirname + '/node_modules/simmigonstatespackage/main.js'));
-
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
