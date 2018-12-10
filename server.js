@@ -5,12 +5,6 @@ console.log(see.states);
 
 var PORT = process.env.PORT || 3000;
 var app = express();
-<<<<<<< Updated upstream
-console.log(__dirname);
-// app.use('/state', express.static(__dirname + '/node_modules/simmigonstatespackage/main.js'));
-
-=======
->>>>>>> Stashed changes
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
