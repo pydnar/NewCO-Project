@@ -1,27 +1,26 @@
 {{> nav }}
 
-
+<!-- Section: Contact -->
 <div class="container">
-    <div class="col s12">
-        <h3>Customer</h3>
-    </div>
-</div>
-<div class="row">
+
     <span id="listmessage" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Show Location</span>
-    <div>
 
 
-
+    <div class="row">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" onclick="closeNav()">Site Location</a>
-            <a href="#"></a>
+            <a href="#" onclick="closeNav()">Site Locations</a>
+            <a href="#">GE Digital</a>
+        </div>
+        <div>
+            {{> googlemap }}
         </div>
 
 
 
         <script>
             document.getElementById("mySidenav").style.width = "250px";
+            $("#listmessage").hide();
             function openNav() {
                 $("#listmessage").hide();
                 document.getElementById("mySidenav").style.width = "250px";
@@ -32,8 +31,7 @@
                 document.getElementById("mySidenav").style.width = "0";
             }
 
-        </script>
-        <script>
+
             const customerpage = function () {
 
                 $(".home").show();
@@ -46,5 +44,15 @@
                 $(".test").hide();
             };
             customerpage();
-
         </script>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div>
+            <a href="/site" class="btn btn-large">Request new site</a>
+            <a href="#" class="btn btn-large">Camera widget </a>
+        </div>
+    </div>
+</div>

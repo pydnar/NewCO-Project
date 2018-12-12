@@ -1,4 +1,6 @@
 {{> nav }}
+
+
 <div class="container">
     <div class="col s12">
         <h3>Customer Site?</h3>
@@ -328,31 +330,35 @@
 <!--Import jQuery before materialize.js-->
 
 
+<script type="text/javascript" src="/assets/js/states.js">
 
-{{!--
-<script type="text/javascript" src="/assets/js/materialize.min.js"></script> --}}
+</script>
+
+
 <script>
     $(document).ready(function () {
-        // Autocomplete
+        var states = "{{ findstates }}";
+
+        states = JSON.parse(states.replace(/&quot;/g, '"'));
         $('.autocomplete').autocomplete({
-            data: {
-                "Hawaii": null,
-                "Florida": null,
-                "California": null,
-                "Europe": null,
-                "Georgia": null,
- 
+            data:
+            states,
+            onAutocomplete: function (STATE) {
+                alert(STATE);
             }
+
+
         });
 
 
 
         $('.second.autocomplete').autocomplete({
-            data: {
-                "GA": null,
-                "Atlanta": null,
-
+            data: { 'Hi': '' }
+            ,
+            onAutocomplete: function (city) {
+                alert(city);
             }
+
         });
 
     });
