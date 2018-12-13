@@ -29,5 +29,23 @@ var users = {
   },
 };
 
-module.exports = users;
+var siteManager = {
+  person: function (cb) {
+    orm.all("", function (res) {
+      cb(res);
+    });
+  },
+  selectUser: function (uuid, cb) {
+    orm.selectUser("users", uuid, function (res) {
+      cb(res);
+    });
+  },
+  selectUser: function (uuid, cb) {
+    orm.all("sites", uuid, function (res) {
+      cb(res);
+    });
+  },
+};
+
+module.exports = {users,sites};
 

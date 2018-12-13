@@ -7,16 +7,28 @@ var model = require("../models/model.js");
 router.get("/api", function (req, res) {
     var id = req.params.id;
     //   console.log(id);
-      model.selectOne([id], function(data) {
+    model.selectOne([id], function (data) {
         var model = {
-          bakingcakes: data
+            bakingcakes: data
         };
         res.json(model);
-      });
+    });
 });
 
 router.post("/api", function (req, res) {
     var id = req.params.id;
+    //   console.log(id);
+    //   model.selectOne([id], function(data) {
+    //     var model = {
+    //       homemodel: data
+    //     };
+    //     res.json(model);
+    //   });
+});
+
+router.post("/login/:uuid/:first/:last", function (req, res) {
+    console.log(req.params);
+    // var id = req.params;
     //   console.log(id);
     //   model.selectOne([id], function(data) {
     //     var model = {

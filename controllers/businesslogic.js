@@ -8,9 +8,10 @@ var states = require("simmigonstatespackage");
 
 
 router.get("/", function (req, res) {
-
-    var ThisnameDoesnotmatter = { Lastname: 'Megatron' };
-    res.render("index", ThisnameDoesnotmatter);
+    var ThisnameDoesnotmatter =  {first : 'Megatron', last: 'Prime'} ;
+   
+    res.render("index",ThisnameDoesnotmatter);
+   
 });
 
 router.get("/index", function (req, res) {
@@ -21,8 +22,14 @@ router.get("/login", function (req, res) {
     res.render("login");
 });
 
-router.get("/home", function (req, res) {
-    res.render("home");
+router.get("/home", function(req, res) {
+  model.sites.all(function(data) {
+    var siteData = {
+      site: data
+    };
+    console.log(siteData);
+    res.render("home", siteData);
+  });
 });
 
 router.get("/admin", function (req, res) {
@@ -30,13 +37,18 @@ router.get("/admin", function (req, res) {
 });
 
 router.get("/customer", function (req, res) {
-    res.render("customer");
+    var ThisnameDoesnotmatter = { name: {first : 'Megatron', last: 'Prime'} };
+    var ThisnamestillDoesnotmatter = { Firstname: 'Prime' };
+
+    res.render("customer",{ThisnameDoesnotmatter,ThisnamestillDoesnotmatter});
 });
 
 router.get("/site", function (req, res) {
 
     var state = JSON.stringify(states);
-    var ThisnameDoesnotmatter = { findstates: state };
+    var ThisnameDoesnotmatter = { data: {findstates: state} };
+
+    model.sites.all
 
     res.render("site", ThisnameDoesnotmatter);
 });

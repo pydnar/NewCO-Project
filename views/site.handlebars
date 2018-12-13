@@ -337,20 +337,16 @@
 
 <script>
     $(document).ready(function () {
+        //from server to client
         var states = "{{ findstates }}";
 
         states = JSON.parse(states.replace(/&quot;/g, '"'));
         $('.autocomplete').autocomplete({
-            data:
-            states,
+            data: states,
             onAutocomplete: function (STATE) {
                 alert(STATE);
             }
-
-
         });
-
-
 
         $('.second.autocomplete').autocomplete({
             data: { 'Hi': '' }
