@@ -38,6 +38,7 @@ $(document).ready(() => {
           email: user.email,
           uid: user.uid
         };
+        console.log(currentuser.uid);
         //Login with mail and save
         localStorage.setItem("userprofile", currentuser.email);
         // alert(localStorage.getItem("userprofile"));
