@@ -3,35 +3,35 @@ $(document).ready(() => {
 
   // Config for Firebase App
   var firebaseConfig = {
-    apiKey: "AIzaSyBa96oWMfmbWVq09zsFd90703oO_VSJtck",
-    authDomain: "project2auth.firebaseapp.com",
-    databaseURL: "https://project2auth.firebaseio.com",
-    projectId: "project2auth",
-    storageBucket: "project2auth.appspot.com",
-    messagingSenderId: "784148365615"
+    apiKey: "AIzaSyCimbU1-NaYNPz_sZFEOXOetAPLZjwo_do",
+    authDomain: "driven-rig-186815.firebaseapp.com",
+    databaseURL: "https://driven-rig-186815.firebaseio.com",
+    projectId: "driven-rig-186815",
+    storageBucket: "driven-rig-186815.appspot.com",
+    messagingSenderId: "742859722146"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   $("#submitLogin").click(function () {
     // Grab data from user form
     event.preventDefault();
     var email = $("#email").val();
-    console.log(email);
     var password = $("#password").val();
-    console.log(password);
 
     var values = {
       email,
       password
     };
     //
-    
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(function () {
-        console.log("You are login in");
+        console.log("You are now logged in");
 
         var user = firebase.auth().currentUser;
         currentuser = {
@@ -42,6 +42,7 @@ $(document).ready(() => {
         localStorage.setItem("userprofile", currentuser.email);
         // alert(localStorage.getItem("userprofile"));
 
+//Need to define ROUTE for where user should land once authenticated.
         $.ajax("/login/" + email + "/" + password, {
           method: "POST",
           async: false,
@@ -133,7 +134,3 @@ $(document).ready(() => {
   });
 
 });
-//Used for test
-const loginTest = function (emailv, passwordv) {
-  //
-}
