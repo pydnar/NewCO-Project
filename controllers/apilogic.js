@@ -35,7 +35,7 @@ router.get("/api/scanner/:catelogid", function (req, res) {
     console.log(catelogid);
     console.log("Looking at request below");
     console.log(req);
-    model.selectUser([catelogid], function (data) {
+    model.selectItem([catelogid], function (data) {
         var listofcatelog = {
             catelog: data
         };

@@ -32,6 +32,11 @@ module.exports  = {
       cb(res);
     });
   },
+  selectItem: function (catelogid, cb) {
+    orm.selectUser("catelog", "catelogid", catelogid, function (res) {
+      cb(res);
+    });
+  },
   siteManager: function (uid, cb) {
     orm.selectManager("users", "uid", uid, function (res) {
       cb(res);
