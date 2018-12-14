@@ -8,10 +8,10 @@ var states = require("simmigonstatespackage");
 
 
 router.get("/", function (req, res) {
-    var ThisnameDoesnotmatter =  {first : 'Megatron', last: 'Prime'} ;
-   
-    res.render("index",ThisnameDoesnotmatter);
-   
+    var ThisnameDoesnotmatter = { first: 'Megatron', last: 'Prime' };
+
+    res.render("index", ThisnameDoesnotmatter);
+
 });
 
 router.get("/index", function (req, res) {
@@ -22,34 +22,73 @@ router.get("/login", function (req, res) {
     res.render("login");
 });
 
-router.get("/home", function(req, res) {
-  model.sites.all(function(data) {
-    var siteData = {
-      site: data
-    };
-    console.log(siteData);
-    res.render("home", siteData);
-  });
+router.get("/home", function (req, res) {
+    //   model.sites.all(function(data) {
+    //     var siteData = {
+    //       site: data
+    //     }
+    //     console.log(siteData);
+    res.render("home");
 });
+
 
 router.get("/admin", function (req, res) {
     res.render("admin");
 });
 
-router.get("/customer", function (req, res) {
-    var ThisnameDoesnotmatter = { name: {first : 'Megatron', last: 'Prime'} };
-    var ThisnamestillDoesnotmatter = { Firstname: 'Prime' };
+router.get("/mysites", function (req, res) {
 
-    res.render("customer",{ThisnameDoesnotmatter,ThisnamestillDoesnotmatter});
+    var state = JSON.stringify(states);
+    var ThisnameDoesnotmatter = { data: { findstates: state } };
+    var email = "dee.joe@jdjd.com";
+    var uuid = "xPLWffqFW0Wse6K3Y6HsVEfAu2m2";
+
+    // model.all(function(data) {
+    //     var insuranceObject = {
+    //       users: data
+    //     };
+    // model.siteManager.person(email, uuid, function (data) {
+    //     var person = {
+    //         personData: data
+    //     }
+    //     var ThisnameDoesnotmatter = { person };
+    //     console.log(ThisnameDoesnotmatter);
+    //     res.render("customer", insuranceObject);
+    //     console.log(insuranceObject)
+    // });
+    // model.siteManager.sites(function(data){
+    //     var sites = {
+    //         siteData: data
+    //     }
+    // });
+
+    model.siteManager(uuid, function(data) {
+        var siteManagerObject = {
+            siteManager: data
+        };
+        res.render("mysites", siteManagerObject);
+        console.log(siteManagerObject)
+    });
 });
 
 router.get("/site", function (req, res) {
 
     var state = JSON.stringify(states);
-    var ThisnameDoesnotmatter = { data: {findstates: state} };
+    var ThisnameDoesnotmatter = { data: { findstates: state } };
 
-    model.sites.all
+    model.siteManager.person(function (data) {
+        var person = {
+            personData: data
+        }
+    });
+    model.siteManager.site(function (data) {
+        var sites = {
+            siteData: data
+        }
+    });
 
+    var ThisnameDoesnotmatter = { person, sites };
+    console.log(ThisnameDoesnotmatter);
     res.render("site", ThisnameDoesnotmatter);
 });
 

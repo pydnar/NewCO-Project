@@ -1,7 +1,7 @@
 // Data 
 var orm = require("../config/orm.js");
 
-var users = {
+module.exports  = {
   all: function (cb) {
     orm.all("users", function (res) {
       cb(res);
@@ -27,25 +27,29 @@ var users = {
       cb(res);
     });
   },
-};
-
-var siteManager = {
-  person: function (cb) {
-    orm.all("", function (res) {
+  siteManager: function (uid, cb) {
+    orm.selectManager("users", "uid", uid, function (res) {
       cb(res);
     });
   },
-  selectUser: function (uuid, cb) {
-    orm.selectUser("users", uuid, function (res) {
-      cb(res);
-    });
-  },
-  selectUser: function (uuid, cb) {
-    orm.all("sites", uuid, function (res) {
+  selectSites: function (condition, cb) {
+    orm.selectSite("sites", condition, function (res) {
       cb(res);
     });
   },
 };
 
-module.exports = {users,sites};
+// var siteManager = {
+//   person: function (uuid, cb) {
+//     orm.selectUser("users", "email", uuid, function (res) {
+//       cb(res);
+//     });
+//   },
+//   sites: function (uuid, cb) {
+//     orm.all("sites", uuid, function (res) {
+//       cb(res);
+//     });
+//   },
+
+
 
