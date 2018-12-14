@@ -36,11 +36,11 @@ router.get("/api/scanner/:catelogid", function (req, res) {
     console.log("Looking at request below");
     console.log(req);
     model.selectUser([catelogid], function (data) {
-        var listofSites = {
+        var listofcatelog = {
             catelog: data
         };
         console.log("THE catelog id should be here");
-        res.json(listofSites);
+        res.json(listofcatelog);
 
     });
 });

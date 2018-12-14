@@ -48,9 +48,12 @@
     <div>
         <form>
             <div class="input-field form-group">
-                <label for="isbn_input">Scanning:</label>
+                <label for="isbn_inputlable">Scanning:</label>
                 <input id="isbn_input" class="isbn" type="text">
                 <button type="button" class="icon-barcode button scan">&nbsp;</button>
+                <div id="barcodetyperesult">
+
+                </div>
             </div>
         </form>
     </div>
@@ -85,6 +88,44 @@
 <script src="addingassets.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+
+$("#assetcheck").click(checkassets);
+
+function checkassets(){
+
+    alert ("you are checking the assets type!");
+
+     event.preventDefault();
+
+ //   var newbarcode = {
+ //     barcodecategory: $("#isbn_input").val().trim()
+ //   };
+    var newbarcode = $("#isbn_input").val().trim();
+    console.log(newbarcode);
+    // Send the get request.
+    $.ajax({
+            data: newbarcode,
+            type: "GET",
+            dataType : "html",
+            success: function( data ) {
+                $('#barcodetyperesult').replaceWith($('#barcodetyperesult').html(data));
+            },
+            error: function( xhr, status ) {
+            alert( "Sorry, there was a problem!" );
+            },
+            complete: function( xhr, status ) {
+                //$('#showresults').slideDown('slow')
+            }
+            }); 
+
+};
+
+$("#assetadd").click(checkassets);
+
+function checkassets(){
+
+    alert ("you are adding this assets to a a site!");
+};
 
 
 
