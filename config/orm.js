@@ -99,7 +99,7 @@ var orm = {
     );
   },
 
-  selectSite: function(tablevalue, colToSearch, valOfCol, callback) {
+  siteSelect: function(tablevalue, colToSearch, valOfCol, callback) {
     var queryString = "SELECT * FROM ?? WHERE ?? = ?";
     var k = connection.query(
       queryString,
