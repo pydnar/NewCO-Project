@@ -22,8 +22,13 @@ module.exports  = {
       cb(res);
     });
   },
-  selectUser: function (id, cb) {
+  selectUser: function (users, cb) {
     orm.selectUser("users", "id", id, function (res) {
+      cb(res);
+    });
+  },
+  selectUser: function (uuid, cb) {
+    orm.selectUser("sites", "uuid", uuid, function (res) {
       cb(res);
     });
   },
@@ -33,7 +38,7 @@ module.exports  = {
     });
   },
   selectSites: function (condition, cb) {
-    orm.selectSite("sites", condition, function (res) {
+    orm.siteSelect("sites", condition, function (res) {
       cb(res);
     });
   },

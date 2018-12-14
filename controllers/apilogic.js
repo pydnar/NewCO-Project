@@ -15,6 +15,21 @@ router.get("/api", function (req, res) {
     });
 });
 
+router.get("/api/sites/:uuid", function (req, res) {
+    var uuid = req.params.uuid;
+    console.log(uuid);
+    console.log("Looking at request below");
+    console.log(req);
+    model.selectUser([uuid], function (data) {
+        var listofSites = {
+            sites: data
+        };
+        console.log("THE SITE SSHOULD BE HERE");
+        res.json(listofSites);
+
+    });
+});
+
 router.post("/api", function (req, res) {
     var id = req.params.id;
     //   console.log(id);
@@ -25,6 +40,7 @@ router.post("/api", function (req, res) {
     //     res.json(model);
     //   });
 });
+
 
 router.post("/login/:uuid/:first/:last", function (req, res) {
     console.log(req.params);
@@ -38,17 +54,17 @@ router.post("/login/:uuid/:first/:last", function (req, res) {
     //   });
 });
 
-router.update("/api", function (req, res) {
-    //Change update value in table itemactive
-    var id = req.params.id;
-    //   console.log(id);
-    // model.selectOne([id], function (data) {
-    //     var model = {
-    //         homemodel: data
-    //     };
-    //     res.json(model);
-    // });
-});
+// router.update("/api", function (req, res) {
+//     //Change update value in table itemactive
+//     var id = req.params.id;
+//     //   console.log(id);
+//     // model.selectOne([id], function (data) {
+//     //     var model = {
+//     //         homemodel: data
+//     //     };
+//     //     res.json(model);
+//     // });
+// });
 
 router.delete("/api", function (req, res) {
     //Change update value in table itemactive

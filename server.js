@@ -20,9 +20,11 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 // Step 2 import businesslogic
 var routes = require("./controllers/businesslogic.js");
+var apiroutes = require("./controllers/apilogic.js");
 // var otherroutes = require("./controllers/other.js");
 // Step 3 tell server about the methods in businesslogic 
 app.use(routes);
+app.use(apiroutes);
 app.use(helmet.hsts({
   maxTime: sixdaysin
 }));
