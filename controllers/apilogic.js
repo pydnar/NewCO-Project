@@ -17,15 +17,10 @@ router.get("/api", function (req, res) {
 
 router.get("/api/sites/:uuid", function (req, res) {
     var uuid = req.params.uuid;
-    console.log(uuid);
-    console.log("Looking at request below");
-    console.log(req);
     model.selectUser([uuid], function (data) {
         var listofSites = {
             sites: data
         };
-        console.log("THE SITE SSHOULD BE HERE");
-        res.json(listofSites);
 
     });
 });
