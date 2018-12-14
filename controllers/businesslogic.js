@@ -18,6 +18,10 @@ router.get("/index", function (req, res) {
     res.render("index");
 });
 
+router.get("/scanner", function (req, res) {
+    res.render("scanner");
+});
+
 router.get("/login", function (req, res) {
     res.render("login");
 });

@@ -30,6 +30,22 @@ router.get("/api/sites/:uuid", function (req, res) {
     });
 });
 
+router.get("/api/scanner/:catelogid", function (req, res) {
+    var catelogid = req.params.catelogid;
+    console.log(catelogid);
+    console.log("Looking at request below");
+    console.log(req);
+    model.selectUser([catelogid], function (data) {
+        var listofSites = {
+            catelog: data
+        };
+        console.log("THE catelog id should be here");
+        res.json(listofSites);
+
+    });
+});
+
+
 router.post("/api", function (req, res) {
     var id = req.params.id;
     //   console.log(id);
