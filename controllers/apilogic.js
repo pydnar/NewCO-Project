@@ -30,6 +30,24 @@ router.get("/api/sites/:uuid", function (req, res) {
     });
 });
 
+
+router.get("/api/sitecost/:siteid", function (req, res) {
+    var siteid = req.params.siteid;
+    console.log(siteid);
+    console.log("Looking at request below");
+    //console.log(req);
+    model.selectUser([siteid], function (data) {
+        var listofassets = {
+            assets: data
+        };
+        console.log("THE assets SSHOULD BE HERE");
+        res.json(listofassets);
+
+    });
+});
+
+
+
 router.get("/api/scanner/:catelogid", function (req, res) {
     var catelogid = req.params.catelogid;
     console.log(catelogid);

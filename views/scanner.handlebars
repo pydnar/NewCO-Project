@@ -1,47 +1,13 @@
+
+
 <html><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Assets scanning</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="copyright" content="This project is maintained by YY">
-    <meta name="description" content="QuaggaJS is an advanced barcode-reader written in JavaScript">
-    <meta name="keywords" content="barcode, javascript, canvas, computer vision, image processing, ean, code128">
-    <meta name="robots" content="index,follow">
-
-    <link rel="canonical" href="https://serratus.github.io/v1.0.0-beta.1/examples/scan-to-input/">
-    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/styles.css">
-    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/example.css">
-    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
-        var host = "serratus.github.io";
-        if ((host == window.location.host) && (window.location.protocol != "https:")) {
-            window.location.protocol = "https";
-        }
-    </script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-56318310-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
   </head>
   <body>
    
 
 
-<link rel="stylesheet" type="text/css" href="https://serratus.github.io/quaggaJS/stylesheets/prism.css">
+
 <section id="container" class="container">
     <h3>Scan barcode to look up for your asssets</h3>
     <p>Click the <strong>button</strong> next to the input-field to start scanning an <strong>Asssets Barcode</strong> barcode</p>
@@ -49,13 +15,12 @@
         <form>
             <div class="input-field form-group">
                 <label for="isbn_inputlable">Scanning:</label>
-                <input id="isbn_input" class="isbn" type="text">
+                <input id="isbn_input" class="isbn" type="text" value="1000001">
                 <button type="button" class="icon-barcode button scan">&nbsp;</button>
-                <div id="barcodetyperesult">
-
-                </div>
             </div>
         </form>
+
+
     </div>
 </section>
 
@@ -65,7 +30,9 @@
         <button type="button" class="btn btn-secondary" id="assetcheck">What is this assets?</button>
 
     </div>
-
+        <div id="barcodetyperesult">
+            <p id="barcodetyperesultp">This asset is: </p>
+        </div>
 
 </section>
 
@@ -89,34 +56,65 @@
 
 <script type="text/javascript">
 
-$("#assetcheck").click(checkassets);
+//$("#assetcheck").click(checkassets);
+
+ $("#assetcheck").click(function () {
+    
+    alert ("you are checking the assets type!");
+    var newbarcode = $("#isbn_input").val().trim();
+
+     event.preventDefault();
+     console.log(newbarcode);
+
+    $.ajax("/api/scanner/" + newbarcode, {
+      type: "GET"
+    }).then(function (r) {
+      console.log(r);
+      alert(r);
+      var rshow=JSON.stringify(r);
+      var rshowonpage=JSON.parse(rshow);
+      console.log(rshowonpage);
+      $('#barcodetyperesultp').html(rshowonpage);
+     //
+      //$('#barcodetyperesult').append(rshow);
+      //location.reload();
+    });
+
+
+  });
+
+
 
 function checkassets(){
 
     alert ("you are checking the assets type!");
+    var newbarcode = $("#isbn_input").val();
 
      event.preventDefault();
 
  //   var newbarcode = {
  //     barcodecategory: $("#isbn_input").val().trim()
  //   };
-    var newbarcode = $("#isbn_input").val().trim();
+    //var newbarcode = $("#isbn_input").val().trim();
     console.log(newbarcode);
     // Send the get request.
-    $.ajax({
-            data: newbarcode,
-            type: "GET",
-            dataType : "html",
-            success: function( data ) {
-                $('#barcodetyperesult').replaceWith($('#barcodetyperesult').html(data));
-            },
-            error: function( xhr, status ) {
-            alert( "Sorry, there was a problem!" );
-            },
-            complete: function( xhr, status ) {
-                //$('#showresults').slideDown('slow')
-            }
-            }); 
+//    $.ajax({
+//            data: newbarcode,
+//            type: "GET",
+//            dataType : "html",
+//            success: function( data ) {
+//                $('#barcodetyperesult').replaceWith($('#barcodetyperesult').html(data));
+//            },
+//            error: function( xhr, status ) {
+//            alert( "Sorry, there was a problem!" );
+ //           },
+//            complete: function( xhr, status ) {
+//                //$('#showresults').slideDown('slow')
+//            }
+//            }); 
+
+
+
 
 };
 
