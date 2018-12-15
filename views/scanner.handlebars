@@ -213,12 +213,50 @@ var newassetcatelogcost;
 
     };
 
-    $("#assetadd").click(checkassets);
+  //  $("#assetadd").click(checkassets);
 
     function checkassets() {
 
         alert("you are adding this assets to a a site!");
     };
+
+
+$("#assetadd").click(function () {
+
+alert ("you are adding this assets to a a site!");
+
+console.log("new assets is as below:");
+console.log(newassetserialno);
+console.log(newassetcatelogmodel);
+console.log(newassetcatelogbrand);
+console.log(newassetcatelogname);
+console.log(newassetcatelogcost);
+
+var newassets={
+assetserialno: newassetserialno,
+assetcatelogname: newassetcatelogname,
+assetbrand: newassetcatelogbrand,
+assetmodel: newassetcatelogmodel,
+assetcost: newassetcatelogcost
+};
+
+
+    $.ajax("/api/assets/", {
+      type: "POST",
+      data: newassets
+    }).then(
+      function() {
+        console.log("New sites added successfully!");
+        alert("New assets added to the site successfully!")
+        // Reload the page to get the updated list
+        location.reload();
+      });
+  });
+
+
+});
+
+
 
     const homepage = function () {
 

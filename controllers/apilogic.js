@@ -91,7 +91,7 @@ router.post("/api", function (req, res) {
     //   });
 });
 
-
+/*
 router.post("/api/scanner/", function (req, res) {
     console.log("New asset coming!");
     console.log(req);
@@ -104,6 +104,27 @@ router.post("/api/scanner/", function (req, res) {
         res.json({ id: result.insertId });
       });
     });
+*/
+
+    router.post(
+        "/api/assets/",
+        function(req, res) {
+          assets.create(Object.keys(req.params), Object.values(req.params), function(
+            data
+          ) {
+            var assets = {
+              homeassets: data
+            };
+            console.log(Object.keys(req.params));
+        
+            res.json({ id: result.insertId });
+            //res.render("assets", assets);
+
+          });
+        }
+      );
+
+
 
     //   console.log(id);
     //   model.selectOne([id], function(data) {
