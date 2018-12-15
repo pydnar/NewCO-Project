@@ -73,6 +73,7 @@
 
     <div>
         <button type="button" class="btn btn-secondary" id="assetadd">Add to my site</button>
+        <input id="siteid" type="text", value="1">
 
     </div>
 
@@ -231,17 +232,19 @@ console.log(newassetcatelogmodel);
 console.log(newassetcatelogbrand);
 console.log(newassetcatelogname);
 console.log(newassetcatelogcost);
-
+var assetsiteid=$("#siteid").val();
+console.log(assetsiteid);
 
 var newassets={
-assetserialno: newassetserialno,
-assetcatelogname: newassetcatelogname,
-assetbrand: newassetcatelogbrand,
-assetmodel: newassetcatelogmodel,
+serialno: newassetserialno,
+siteid: assetsiteid,
+catelogid: newassetcatelogid,
+assetdescription: newassetcatelogname + ": "+ newassetcatelogbrand + " "+ newassetcatelogmodel,
 assetcost: newassetcatelogcost
 };
 
 console.log(newassets);
+
 
 /*
     $.ajax("/api/assets/", {
@@ -254,7 +257,22 @@ console.log(newassets);
         location.reload();
       });
   });
+
 */
+
+/*
+    $.ajax("/api/scanner/", {
+      type: "POST",
+      data: newassets
+    }).then(
+      function() {
+        console.log("created new site!");
+        // Reload the page to get the updated list
+        location.reload();
+      });
+  });
+*/
+
 
 });
 
