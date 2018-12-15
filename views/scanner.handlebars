@@ -47,7 +47,7 @@
         <form>
             <div class="input-field form-group">
                 <label for="isbn_inputlable">Scanning:</label>
-                <input id="isbn_input" class="isbn" type="text" value="1000001">
+                <input id="isbn_input" class="isbn" type="text" value="1000001545457">
                 <button type="button" class="icon-barcode button scan">&nbsp;</button>
             </div>
         </form>
@@ -59,7 +59,7 @@
 <section class="container">
 
     <div>
-        <button type="button" class="btn btn-secondary" id="assetcheck">What is this assets?</button>
+        <button type="button" class="btn btn-secondary" id="assetcheck">Checking assets?</button>
 
     </div>
         <div id="barcodetyperesult">
@@ -91,19 +91,29 @@
 
 //$("#assetcheck").click(checkassets);
 
+var newassetserialno;
+var newassetcatelogid;
+var newassetcatelogname;
+var newassetcatelogmodel;
+var newassetcatelogbrand;
+var newassetcatelogcost;
+
  $("#assetcheck").click(function () {
     
     alert ("you are checking the assets type!");
     var newbarcode = $("#isbn_input").val().trim();
+    var newbarcode7 = newbarcode.substring(0,7);
+    //alert(newbarcode7);
+    newassetserialno = newbarcode;
 
      event.preventDefault();
-     console.log(newbarcode);
+     console.log(newbarcode7);
 
-    $.ajax("/api/scanner/" + newbarcode, {
+    $.ajax("/api/scanner/" + newbarcode7, {
       type: "GET"
     }).then(function (r) {
       console.log(r);
-      alert(r);
+      //alert(r);
       console.log("relementid");
       console.log(r.catelog[0].catelogid);
       var newcatelogid=r.catelog[0].catelogid;
@@ -111,7 +121,14 @@
       var newcatelogmodel=r.catelog[0].model;
       var newcatelogbrand=r.catelog[0].brand;
       var newcatelogcost=r.catelog[0].cost;
-      $('#barcodetyperesultp').append(newcatelogname);
+
+      newassetcatelogid = newcatelogid;
+      newassetcatelogname = newcatelogname;
+      newassetcatelogmodel = newcatelogmodel;
+      newassetcatelogbrand = newcatelogbrand;
+      newassetcatelogcost = newcatelogcost;
+
+      //$('#barcodetyperesultp').append(newcatelogname);
     
     $('#barcodetyperesult').empty();
       var newtable = $("<table>");

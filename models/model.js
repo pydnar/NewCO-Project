@@ -52,7 +52,15 @@ module.exports  = {
       cb(res);
     });
   },
+  createassets: function (cols, vals, cb) {
+    orm.create("assets", cols, vals, function (res) {
+      cb(res);
+    });
+  },
+
 };
+
+
 
 // var siteManager = {
 //   person: function (uuid, cb) {
