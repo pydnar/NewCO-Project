@@ -91,7 +91,7 @@ router.post("/api", function (req, res) {
     //   });
 });
 
-/*
+
 router.post("/api/scanner/", function (req, res) {
     console.log("New asset coming!");
     console.log(req);
@@ -104,7 +104,7 @@ router.post("/api/scanner/", function (req, res) {
         res.json({ id: result.insertId });
       });
     });
-*/
+
 
 router.post("/api/assets", function(req, res) {
     var newassets = Object.values(req.body);
