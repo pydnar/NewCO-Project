@@ -51,6 +51,7 @@ $(document).ready(() => {
         localStorage.setItem("uid", currentuser.uid);
         localStorage.setItem("uuid", res.users[0].uuid);
           console.log("Data should be above!");
+          window.location.href = "/home"
         }); //End of ajax call
       })
       .catch(function (error) {

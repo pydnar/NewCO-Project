@@ -80,7 +80,7 @@ router.get("/api/scanner/:catelogid", function (req, res) {
 
 
 
-router.post("/api", function (req, res) {
+router.post("/api/:id", function (req, res) {
     var id = req.params.id;
     //   console.log(id);
     //   model.selectOne([id], function(data) {
@@ -89,18 +89,20 @@ router.post("/api", function (req, res) {
     //     };
     //     res.json(model);
     //   });
+    console.log(id);
 });
 
 
-router.post("/api/scanner/", function (req, res) {
+router.post("/api/scanner/:serialno/:siteid/:catelogid/:assetdescription/:assetcost", function (req, res) {
     console.log("New asset coming!");
     console.log(req);
     console.log(res);
-    model.createassets([
-        "serialno", "siteid","catelogid","assetdescription","assetcost"
-      ], [
-        req.body.serialno, req.body.siteid,req.body.catelogid,req.body.assetdescription, req.body.assetcost,
+    model.createassets(
+        ["serialno", "siteid","catelogid","assetdescription","assetcost"]
+      , [
+        req.params.serialno, req.params.siteid,req.params.catelogid,req.params.assetdescription, req.params.assetcost,
       ], function(result) {
+          console.log(req.params);
         res.json({ id: result.insertId });
       });
     });

@@ -9,7 +9,8 @@
 <meta name="keywords" content="barcode, javascript, canvas, computer vision, image processing, ean, code128">
 <meta name="robots" content="index,follow">
 
-<link rel="canonical" href="https://serratus.github.io/v1.0.0-beta.1/examples/scan-to-input/"> {{!--Below is a styles sheet that was causing format issues. --}} {{!--
+<link rel="canonical" href="https://serratus.github.io/v1.0.0-beta.1/examples/scan-to-input/"> {{!--Below is a styles
+sheet that was causing format issues. --}} {{!--
 <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/styles.css"> --}}
 <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/example.css">
 <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
@@ -23,7 +24,6 @@
     if ((host == window.location.host) && (window.location.protocol != "https:")) {
         window.location.protocol = "https";
     }
-
 </script>
 <script>
     (function (i, s, o, g, r, a, m) {
@@ -42,7 +42,8 @@
 
 <section class="container">
     <h3>Scan barcode to look up for your asssets</h3>
-    <p>Click the <strong>button</strong> next to the input-field to start scanning an <strong>Asssets Barcode</strong> barcode</p>
+    <p>Click the <strong>button</strong> next to the input-field to start scanning an <strong>Asssets Barcode</strong>
+        barcode</p>
     <div>
         <form>
             <div class="input-field form-group">
@@ -62,10 +63,10 @@
         <button type="button" class="btn btn-secondary" id="assetcheck">Checking assets?</button>
 
     </div>
-        <div id="barcodetyperesult">
-            {{!-- <p id="barcodetyperesultp">This asset is: </p> --}}
+    <div id="barcodetyperesult">
+        {{!-- <p id="barcodetyperesultp">This asset is: </p> --}}
 
-        </div>
+    </div>
 
 </section>
 
@@ -73,7 +74,7 @@
 
     <div>
         <button type="button" class="btn btn-secondary" id="assetadd">Add to my site</button>
-        <input id="siteid" type="text", value="1">
+        <input id="siteid" type="text" , value="1">
 
     </div>
 
@@ -90,93 +91,91 @@
 
 <script type="text/javascript">
 
-//$("#assetcheck").click(checkassets);
+    //$("#assetcheck").click(checkassets);
 
-var newassetserialno;
-var newassetcatelogid;
-var newassetcatelogname;
-var newassetcatelogmodel;
-var newassetcatelogbrand;
-var newassetcatelogcost;
+    var newassetserialno;
+    var newassetcatelogid;
+    var newassetcatelogname;
+    var newassetcatelogmodel;
+    var newassetcatelogbrand;
+    var newassetcatelogcost;
 
- $("#assetcheck").click(function () {
-    
-    alert ("you are checking the assets type!");
-    var newbarcode = $("#isbn_input").val().trim();
-    var newbarcode7 = newbarcode.substring(0,7);
-    //alert(newbarcode7);
-    newassetserialno = newbarcode;
+    $("#assetcheck").click(function (event) {
 
-     event.preventDefault();
-     console.log(newbarcode7);
+        alert("you are checking the assets type!");
+        var newbarcode = $("#isbn_input").val().trim();
+        var newbarcode7 = newbarcode.substring(0, 7);
+        //alert(newbarcode7);
+        newassetserialno = newbarcode;
 
-    $.ajax("/api/scanner/" + newbarcode7, {
-      type: "GET"
-    }).then(function (r) {
-      console.log(r);
-      //alert(r);
-      console.log("relementid");
-      console.log(r.catelog[0].catelogid);
-      var newcatelogid=r.catelog[0].catelogid;
-      var newcatelogname=r.catelog[0].catelogname;
-      var newcatelogmodel=r.catelog[0].model;
-      var newcatelogbrand=r.catelog[0].brand;
-      var newcatelogcost=r.catelog[0].cost;
+        event.preventDefault();
+        console.log(newbarcode7);
 
-      newassetcatelogid = newcatelogid;
-      newassetcatelogname = newcatelogname;
-      newassetcatelogmodel = newcatelogmodel;
-      newassetcatelogbrand = newcatelogbrand;
-      newassetcatelogcost = newcatelogcost;
+        $.ajax("/api/scanner/" + newbarcode7, {
+            type: "GET"
+        }).then(function (r) {
+            console.log(r);
+            //alert(r);
+            console.log("relementid");
+            console.log(r.catelog[0].catelogid);
+            var newcatelogid = r.catelog[0].catelogid;
+            var newcatelogname = r.catelog[0].catelogname;
+            var newcatelogmodel = r.catelog[0].model;
+            var newcatelogbrand = r.catelog[0].brand;
+            var newcatelogcost = r.catelog[0].cost;
 
-      //$('#barcodetyperesultp').append(newcatelogname);
-    
-    $('#barcodetyperesult').empty();
-      var newtable = $("<table>");
-        var newtable0 = $("<tr>");
-          var newtablehid=$("<th>");
-              newtablehid.append("Catelog ID");
-          var newtablehname=$("<th>");
-              newtablehname.append("Category");
-          var newtablehmodel=$("<th>");
-              newtablehmodel.append("Model");
-          var newtablehbrand=$("<th>");
-              newtablehbrand.append("Brand");
-          var newtablehcost=$("<th>");
-              newtablehcost.append("Cost");
-        newtable0.append(newtablehid);
-        newtable0.append(newtablehname);
-        newtable0.append(newtablehmodel);
-        newtable0.append(newtablehbrand);
-        newtable0.append(newtablehcost);
-        var newtabler = $("<tr>");
-          var newtabledid=$("<td>");
-              newtabledid.append(newcatelogid);
-          var newtabledname=$("<td>");
-              newtabledname.append(newcatelogname);
-          var newtabledmodel=$("<td>");
-              newtabledmodel.append(newcatelogmodel);
-          var newtabledbrand=$("<td>");
-              newtabledbrand.append(newcatelogbrand);
-          var newtabledcost=$("<td>");
-              newtabledcost.append(newcatelogcost);
-        newtabler.append(newtabledid);
-        newtabler.append(newtabledname);
-        newtabler.append(newtabledmodel);
-        newtabler.append(newtabledbrand);
-        newtabler.append(newtabledcost);
+            newassetcatelogid = newcatelogid;
+            newassetcatelogname = newcatelogname;
+            newassetcatelogmodel = newcatelogmodel;
+            newassetcatelogbrand = newcatelogbrand;
+            newassetcatelogcost = newcatelogcost;
 
-        newtable.append(newtable0);
-        newtable.append(newtabler);
-       $('#barcodetyperesult').append(newtable);
-      //var rshow=JSON.stringify(r);
-      //var rshowonpage=JSON.parse(rshow);
-      //console.log(rshow);
-      //$('#barcodetyperesultp').html(rshow);
-      //location.reload();
-    });
+            //$('#barcodetyperesultp').append(newcatelogname);
 
+            $('#barcodetyperesult').empty();
+            var newtable = $("<table>");
+            var newtable0 = $("<tr>");
+            var newtablehid = $("<th>");
+            newtablehid.append("Catelog ID");
+            var newtablehname = $("<th>");
+            newtablehname.append("Category");
+            var newtablehmodel = $("<th>");
+            newtablehmodel.append("Model");
+            var newtablehbrand = $("<th>");
+            newtablehbrand.append("Brand");
+            var newtablehcost = $("<th>");
+            newtablehcost.append("Cost");
+            newtable0.append(newtablehid);
+            newtable0.append(newtablehname);
+            newtable0.append(newtablehmodel);
+            newtable0.append(newtablehbrand);
+            newtable0.append(newtablehcost);
+            var newtabler = $("<tr>");
+            var newtabledid = $("<td>");
+            newtabledid.append(newcatelogid);
+            var newtabledname = $("<td>");
+            newtabledname.append(newcatelogname);
+            var newtabledmodel = $("<td>");
+            newtabledmodel.append(newcatelogmodel);
+            var newtabledbrand = $("<td>");
+            newtabledbrand.append(newcatelogbrand);
+            var newtabledcost = $("<td>");
+            newtabledcost.append(newcatelogcost);
+            newtabler.append(newtabledid);
+            newtabler.append(newtabledname);
+            newtabler.append(newtabledmodel);
+            newtabler.append(newtabledbrand);
+            newtabler.append(newtabledcost);
 
+            newtable.append(newtable0);
+            newtable.append(newtabler);
+            $('#barcodetyperesult').append(newtable);
+            //var rshow=JSON.stringify(r);
+            //var rshowonpage=JSON.parse(rshow);
+            //console.log(rshow);
+            //$('#barcodetyperesultp').html(rshow);
+            //location.reload();
+        });
     });
 
 
@@ -208,73 +207,64 @@ var newassetcatelogcost;
         //                //$('#showresults').slideDown('slow')
         //            }
         //            }); 
-
-
-
-
     };
 
-  //  $("#assetadd").click(checkassets);
-
+    //  $("#assetadd").click(checkassets);
+/*
     function checkassets() {
 
         alert("you are adding this assets to a a site!");
     };
+ */
 
 
-$("#assetadd").click(function () {
+    $("#assetadd").click(function (event) {
 
-alert ("you are adding this assets to a a site!");
+        event.preventDefault();
+        alert("you are adding this assets to a a site!");
 
-console.log("new assets is as below:");
-console.log(newassetserialno);
-console.log(newassetcatelogmodel);
-console.log(newassetcatelogbrand);
-console.log(newassetcatelogname);
-console.log(newassetcatelogcost);
-var assetsiteid=$("#siteid").val();
-console.log(assetsiteid);
+        console.log("new assets is as below:");
+        console.log(newassetserialno);
+        console.log(newassetcatelogmodel);
+        console.log(newassetcatelogbrand);
+        console.log(newassetcatelogname);
+        console.log(newassetcatelogcost);
+        var assetsiteid = $("#siteid").val();
+        console.log(assetsiteid);
 
-var newassets={
-serialno: newassetserialno,
-siteid: assetsiteid,
-catelogid: newassetcatelogid,
-assetdescription: newassetcatelogname + ": "+ newassetcatelogbrand + " "+ newassetcatelogmodel,
-assetcost: newassetcatelogcost
-};
+        var newassets = {
+            serialno: newassetserialno,
+            siteid: assetsiteid,
+            catelogid: newassetcatelogid,
+            assetdescription: newassetcatelogname + ": " + newassetcatelogbrand + " " + newassetcatelogmodel,
+            assetcost: newassetcatelogcost
+        };
 
-console.log(newassets);
-
-
-/*
-    $.ajax("/api/assets/", {
-      type: "POST",
-      data: newassets
-    }).then(function() {
-        console.log("New sites added successfully!");
-        alert("New assets added to the site successfully!")
-        // Reload the page to get the updated list
-        location.reload();
-      });
-  });
-
-*/
-
-/*
-    $.ajax("/api/scanner/", {
-      type: "POST",
-      data: newassets
-    }).then(
-      function() {
-        console.log("created new site!");
-        // Reload the page to get the updated list
-        location.reload();
-      });
-  });
-*/
+        console.log(newassets);
+        /*
+            $.ajax("/api/assets/", {
+              type: "POST",
+              data: newassets
+            }).then(function() {
+                console.log("New sites added successfully!");
+                alert("New assets added to the site successfully!")
+                // Reload the page to get the updated list
+                location.reload();
+              });
+          });
+        
+        */
 
 
-});
+            $.ajax("/api/scanner/" + newassets.serialno + "/" + newassets.siteid + "/" + newassets.catelogid + "/" + newassets.assetdescription + "/" + newassets.assetcost, {
+              type: "POST",
+            }).then(
+              function() {
+                console.log("created new site!");
+                // Reload the page to get the updated list
+                location.reload();
+              });
+          });
 
 
 
