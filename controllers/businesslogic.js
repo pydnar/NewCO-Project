@@ -2,7 +2,7 @@
 var express = require("express");
 
 var router = express.Router();
-
+var store = require("store");
 var model = require("../models/model.js");
 var states = require("simmigonstatespackage");
 
@@ -42,11 +42,10 @@ router.get("/admin", function (req, res) {
 
 router.get("/mysites", function (req, res) {
 
-    var state = JSON.stringify(states);
-    var ThisnameDoesnotmatter = { data: { findstates: state } };
-    var email = "dee.joe@jdjd.com";
-    var uuid = "xPLWffqFW0Wse6K3Y6HsVEfAu2m2";
-
+    // var state = JSON.stringify(states);
+    // var ThisnameDoesnotmatter = { data: { findstates: state } };
+    // var email = "dee.joe@jdjd.com";
+        var uid = 4;
     // model.all(function(data) {
     //     var insuranceObject = {
     //       users: data
@@ -65,14 +64,18 @@ router.get("/mysites", function (req, res) {
     //         siteData: data
     //     }
     // });
+     
+    console.log(req);
+    console.log("UID ABOVE and UUID will be below:");
 
-    model.siteManager(uuid, function(data) {
+    model.siteManager(uid, function(data) {
         var siteManagerObject = {
             siteManager: data
         };
         res.render("mysites", siteManagerObject);
         console.log(siteManagerObject)
     });
+
 });
 
 router.get("/site", function (req, res) {

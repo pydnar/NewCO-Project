@@ -31,6 +31,20 @@ router.get("/api/sites/:uuid", function (req, res) {
 });
 
 
+router.get("/api/getuser/:uid", function (req, res) {
+    var uid = req.params.uid;
+    console.log(uid);
+    console.log("Looking at request below");
+    //console.log(req);
+    model.selectUserUUID([uid], function (data) {
+        var uid = {
+            users: data
+        };
+        console.log("The UID should be below.");
+        res.json(uid);
+    });
+});
+
 router.get("/api/sitecost/:siteid", function (req, res) {
     var siteid = req.params.siteid;
     console.log(siteid);

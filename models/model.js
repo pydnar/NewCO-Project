@@ -22,11 +22,11 @@ module.exports  = {
       cb(res);
     });
   },
-  selectUser: function (users, cb) {
-    orm.selectUser("users", "id", id, function (res) {
-      cb(res);
-    });
-  },
+  // selectUser: function (users, cb) {
+  //   orm.selectUser("users", "id", id, function (res) {
+  //     cb(res);
+  //   });
+  // },
   selectUser: function (uuid, cb) {
     orm.selectUser("sites", "uuid", uuid, function (res) {
       cb(res);
@@ -38,6 +38,11 @@ module.exports  = {
     });
   },
   siteManager: function (uid, cb) {
+    orm.selectManager("users", "uid", uid, function (res) {
+      cb(res);
+    });
+  },
+  selectUserUUID: function (uid, cb) {
     orm.selectManager("users", "uid", uid, function (res) {
       cb(res);
     });

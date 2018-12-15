@@ -38,22 +38,20 @@ $(document).ready(() => {
           email: user.email,
           uid: user.uid
         };
-        //Login, set userprofile
-        localStorage.setItem("userprofile", currentuser.email);
-        //Login, set user UUID
-        localStorage.setItem("uuid", currentuser.uid);
 //Need to define ROUTE for where user should land once authenticated.
-        // $.ajax("/login/" + email + "/" + password, {
-        //   method: "POST",
-        //   async: false,
-
-        //   data: values
-        //   //Init values are coming from the login
-        // }).then(function (res) {
-        //   //   userandassets = res;
-
-        //   window.location.href = "/home/" + localStorage.getItem("userprofile");
-        // }); //End of ajax call
+        alert(currentuser.uid);
+        $.ajax("/api/getuser/" + currentuser.uid, {
+          method: "GET",
+          async: false,
+          //Init values are coming from the login
+        }).then(function (res) {
+        //Login, set user name
+        localStorage.setItem("username", res.users[0].firstname);
+        //Login, set user UUID
+        localStorage.setItem("uid", currentuser.uid);
+        localStorage.setItem("uuid", res.users[0].uuid);
+          console.log("Data should be above!");
+        }); //End of ajax call
       })
       .catch(function (error) {
         var errorC = error.code;
@@ -61,6 +59,7 @@ $(document).ready(() => {
         console.log(errorC, errorM);
         $("#loginAlert").text("No Corresponding User Record Found.");
       });
+      
   });
 
   $("#submitSignout").click(function () {
