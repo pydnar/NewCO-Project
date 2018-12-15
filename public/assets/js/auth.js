@@ -38,42 +38,41 @@ $(document).ready(() => {
           email: user.email,
           uid: user.uid
         };
-        //Login with mail and save
+        //Login, set userprofile
         localStorage.setItem("userprofile", currentuser.email);
-        // alert(localStorage.getItem("userprofile"));
-
+        //Login, set user UUID
+        localStorage.setItem("uuid", currentuser.uid);
 //Need to define ROUTE for where user should land once authenticated.
-        $.ajax("/login/" + email + "/" + password, {
-          method: "POST",
-          async: false,
+        // $.ajax("/login/" + email + "/" + password, {
+        //   method: "POST",
+        //   async: false,
 
-          data: values
-          //Init values are coming from the login
-        }).then(function (res) {
-          //   userandassets = res;
+        //   data: values
+        //   //Init values are coming from the login
+        // }).then(function (res) {
+        //   //   userandassets = res;
 
-          window.location.href = "/home/" + localStorage.getItem("userprofile");
-        }); //End of ajax call
+        //   window.location.href = "/home/" + localStorage.getItem("userprofile");
+        // }); //End of ajax call
       })
       .catch(function (error) {
         var errorC = error.code;
         var errorM = error.message;
         console.log(errorC, errorM);
-        $("#loginAlert").text("There is no user record corresponding to this");
+        $("#loginAlert").text("No Corresponding User Record Found.");
       });
   });
 
   $("#submitSignout").click(function () {
     localStorage.removeItem("userprofile");
     $("username").val("");
-
     firebase
       .auth()
       .signOut()
       .then(function () {
-        // alert("You have been logged out");
-
-        window.location.href = "/";
+        alert("You have been logged out");
+        localStorage.clear();
+        $('#submitSignout').hide();
       })
       .catch(function (error) {
         var errorC = error.code;
