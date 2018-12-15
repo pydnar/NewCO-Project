@@ -4,6 +4,7 @@ const hideform = function () {
     $(".admin").hide();
     $(".customer").hide();
     $(".site").hide();
+    $("#submitSignout").hide();
 };
 hideform();
 
