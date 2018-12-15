@@ -232,6 +232,7 @@ console.log(newassetcatelogbrand);
 console.log(newassetcatelogname);
 console.log(newassetcatelogcost);
 
+
 var newassets={
 assetserialno: newassetserialno,
 assetcatelogname: newassetcatelogname,
@@ -240,19 +241,20 @@ assetmodel: newassetcatelogmodel,
 assetcost: newassetcatelogcost
 };
 
+console.log(newassets);
 
+/*
     $.ajax("/api/assets/", {
       type: "POST",
       data: newassets
-    }).then(
-      function() {
+    }).then(function() {
         console.log("New sites added successfully!");
         alert("New assets added to the site successfully!")
         // Reload the page to get the updated list
         location.reload();
       });
   });
-
+*/
 
 });
 

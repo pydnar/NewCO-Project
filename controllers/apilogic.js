@@ -106,24 +106,21 @@ router.post("/api/scanner/", function (req, res) {
     });
 */
 
-    router.post(
-        "/api/assets/",
-        function(req, res) {
-          assets.create(Object.keys(req.params), Object.values(req.params), function(
-            data
-          ) {
-            var assets = {
-              homeassets: data
-            };
-            console.log(Object.keys(req.params));
-        
-            res.json({ id: result.insertId });
-            //res.render("assets", assets);
-
-          });
-        }
-      );
-
+router.post("/api/assets", function(req, res) {
+    var newassets = Object.values(req.body);
+  
+    console.log(newassets);
+  
+    model.createassets([Object.keys(req.body)], [Object.values(req.body)], function(
+      result
+    ) {
+      var assetdata = {
+        assets: result
+      };
+  
+      //res.json("/home/" + email[2]);
+    });
+  });
 
 
     //   console.log(id);
