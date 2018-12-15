@@ -31,7 +31,8 @@
 
     </div>
         <div id="barcodetyperesult">
-            <p id="barcodetyperesultp">This asset is: </p>
+            {{!-- <p id="barcodetyperesultp">This asset is: </p> --}}
+
         </div>
 
 </section>
@@ -71,12 +72,57 @@
     }).then(function (r) {
       console.log(r);
       alert(r);
-      var rshow=JSON.stringify(r);
-      var rshowonpage=JSON.parse(rshow);
-      console.log(rshow);
-      $('#barcodetyperesultp').html(rshow);
-     //
-      //$('#barcodetyperesult').append(rshow);
+      console.log("relementid");
+      console.log(r.catelog[0].catelogid);
+      var newcatelogid=r.catelog[0].catelogid;
+      var newcatelogname=r.catelog[0].catelogname;
+      var newcatelogmodel=r.catelog[0].model;
+      var newcatelogbrand=r.catelog[0].brand;
+      var newcatelogcost=r.catelog[0].cost;
+      $('#barcodetyperesultp').append(newcatelogname);
+    
+    $('#barcodetyperesult').empty();
+      var newtable = $("<table>");
+        var newtable0 = $("<tr>");
+          var newtablehid=$("<th>");
+              newtablehid.append("Catelog ID");
+          var newtablehname=$("<th>");
+              newtablehname.append("Category");
+          var newtablehmodel=$("<th>");
+              newtablehmodel.append("Model");
+          var newtablehbrand=$("<th>");
+              newtablehbrand.append("Brand");
+          var newtablehcost=$("<th>");
+              newtablehcost.append("Cost");
+        newtable0.append(newtablehid);
+        newtable0.append(newtablehname);
+        newtable0.append(newtablehmodel);
+        newtable0.append(newtablehbrand);
+        newtable0.append(newtablehcost);
+        var newtabler = $("<tr>");
+          var newtabledid=$("<td>");
+              newtabledid.append(newcatelogid);
+          var newtabledname=$("<td>");
+              newtabledname.append(newcatelogname);
+          var newtabledmodel=$("<td>");
+              newtabledmodel.append(newcatelogmodel);
+          var newtabledbrand=$("<td>");
+              newtabledbrand.append(newcatelogbrand);
+          var newtabledcost=$("<td>");
+              newtabledcost.append(newcatelogcost);
+        newtabler.append(newtabledid);
+        newtabler.append(newtabledname);
+        newtabler.append(newtabledmodel);
+        newtabler.append(newtabledbrand);
+        newtabler.append(newtabledcost);
+
+        newtable.append(newtable0);
+        newtable.append(newtabler);
+       $('#barcodetyperesult').append(newtable);
+      //var rshow=JSON.stringify(r);
+      //var rshowonpage=JSON.parse(rshow);
+      //console.log(rshow);
+      //$('#barcodetyperesultp').html(rshow);
       //location.reload();
     });
 
