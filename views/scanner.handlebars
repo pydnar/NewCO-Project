@@ -74,7 +74,7 @@ sheet that was causing format issues. --}} {{!--
 
     <div>
         <button type="button" class="btn btn-secondary" id="assetadd">Add to my site</button>
-        <input id="siteid" type="text" , value="1">
+        <input id="siteid" type="text" value="1">
 
     </div>
 
@@ -102,7 +102,7 @@ sheet that was causing format issues. --}} {{!--
 
     $("#assetcheck").click(function (event) {
 
-        alert("you are checking the assets type!");
+        //alert("you are checking the assets type!");
         var newbarcode = $("#isbn_input").val().trim();
         var newbarcode7 = newbarcode.substring(0, 7);
         //alert(newbarcode7);
@@ -223,7 +223,7 @@ sheet that was causing format issues. --}} {{!--
     $("#assetadd").click(function (event) {
 
         event.preventDefault();
-        alert("you are adding this assets to a a site!");
+        //alert("you are adding this assets to a a site!");
 
         console.log("new assets is as below:");
         console.log(newassetserialno);
@@ -294,6 +294,7 @@ var siteupdatecost;
             }).then(function() {
             console.log("site updated is: ");
             console.log("updated id ", newassets.siteid);
+            alert("Added to the site successfully!");
             // Reload the page to get the updated list
             //location.reload();
             });
