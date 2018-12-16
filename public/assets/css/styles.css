@@ -69,3 +69,12 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+.btn {
+  background-color: blue;
+}
+
+.btn:hover {
+  background-color: lightskyblue;
+}
