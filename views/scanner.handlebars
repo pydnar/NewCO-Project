@@ -176,6 +176,8 @@ sheet that was causing format issues. --}} {{!--
             //$('#barcodetyperesultp').html(rshow);
             //location.reload();
         });
+    
+    
     });
 
 
@@ -262,8 +264,38 @@ sheet that was causing format issues. --}} {{!--
               function() {
                 console.log("created new site!");
                 // Reload the page to get the updated list
-                location.reload();
+               // location.reload();
               });
+          
+
+var siteupatecount;
+var siteupdatecost;
+
+
+            $.ajax("/api/scannersitefind/" + newassets.siteid, {
+            type: "GET"
+        }).then(function (r) {
+            console.log(r);
+            alert(r);
+            console.log("relementid");
+            siteupdatecount = r.sites[0].siteassetcount + 1;
+            siteupdatecost = r.sites[0].siteassetcost + newassets.assetcost;
+            console.log(siteupdatecost);
+            console.log(siteupdatecount);
+
+        });
+    
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           });
 
 

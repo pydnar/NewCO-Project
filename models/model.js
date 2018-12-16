@@ -37,6 +37,12 @@ module.exports  = {
       cb(res);
     });
   },
+  selectSiteNew: function (siteid, cb) {
+    orm.selectUser("sites", "siteid", siteid, function (res) {
+      cb(res);
+    });
+  },
+
   siteManager: function (uid, cb) {
     orm.selectManager("users", "uid", uid, function (res) {
       cb(res);

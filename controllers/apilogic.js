@@ -78,6 +78,20 @@ router.get("/api/scanner/:catelogid", function (req, res) {
 });
 
 
+router.get("/api/scannersitefind/:siteid", function (req, res) {
+    var siteid = req.params.siteid;
+    console.log(siteid);
+    console.log("Looking at request below");
+    console.log(req);
+    model.selectSiteNew([siteid], function (data) {
+        var listofcatelog = {
+            sites: data
+        };
+        console.log("THE site should be here");
+        res.json(listofcatelog);
+
+    });
+});
 
 
 router.post("/api/:id", function (req, res) {
