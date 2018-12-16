@@ -94,6 +94,7 @@ router.get("/api/scannersitefind/:siteid", function (req, res) {
 });
 
 
+
 router.post("/api/:id", function (req, res) {
     var id = req.params.id;
     //   console.log(id);
@@ -137,6 +138,24 @@ router.post("/api/assets", function(req, res) {
       //res.json("/home/" + email[2]);
     });
   });
+
+
+  router.put("/api/scannersiteupdate/:siteid/:assetcost", function(req, res) {
+    var condition = "siteid = " + req.params.siteid;
+    var newassetcost =  req.params.assetcost;
+  
+    console.log("condition", condition);
+  
+    model.updatesitecost(newassetcost, condition, function(result) {
+      if (result.changedRows == 0) {
+       return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+
+  });
+  
 
 
     //   console.log(id);

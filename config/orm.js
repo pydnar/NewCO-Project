@@ -169,11 +169,21 @@ var orm = {
   },
 
 
-  newupdate: function(table, objColVals, condition, cb) {
+  newupdate: function(table, objColVal1, objColVal2, value1, value2, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
-    queryString += objToSql(objColVals);
+    queryString += objColVal1;
+    queryString += " = ";
+    queryString += objColVal1;
+    queryString += " + ";
+    queryString += value1;
+    queryString += ", ";
+    queryString += objColVal2;
+    queryString += " = ";
+    queryString += objColVal2;
+    queryString += " + ";
+    queryString += value2;
     queryString += " WHERE ";
     queryString += condition;
 

@@ -262,30 +262,42 @@ sheet that was causing format issues. --}} {{!--
               type: "POST",
             }).then(
               function() {
-                console.log("created new site!");
+                console.log("created new assets at the site!");
                 // Reload the page to get the updated list
                // location.reload();
               });
           
 
-var siteupatecount;
+var siteupatecount = 0;
 var siteupdatecost;
 
-
+/*
             $.ajax("/api/scannersitefind/" + newassets.siteid, {
             type: "GET"
-        }).then(function (r) {
+            }).then(function (r) {
             console.log(r);
-            alert(r);
+            //alert(r);
             console.log("relementid");
             siteupdatecount = r.sites[0].siteassetcount + 1;
             siteupdatecost = r.sites[0].siteassetcost + newassets.assetcost;
+            console.log("site find to be updated with following");
             console.log(siteupdatecost);
             console.log(siteupdatecount);
+            });
+*/    
+            
 
-        });
-    
-          
+       
+            $.ajax("/api/scannersiteupdate/" + newassets.siteid + "/" + newassets.assetcost, {
+             type: "PUT",
+            // data: {siteassetcount: siteupatecount}
+            }).then(function() {
+            console.log("site updated is: ");
+            console.log("updated id ", newassets.siteid);
+            // Reload the page to get the updated list
+            //location.reload();
+            });
+
           
           
           

@@ -64,6 +64,12 @@ module.exports  = {
     });
   },
 
+  updatesitecost: function(newassetcost, condition, cb) {
+    orm.newupdate("sites", "siteassetcount", "siteassetcost", "1", newassetcost, condition, function(res) {
+      cb(res);
+    });
+  },
+
 };
 
 
