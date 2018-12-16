@@ -9,8 +9,7 @@
     <div class="row">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" onclick="closeNav()">Site Locations</a>
-            {{!-- <a href="#">GE Digital</a> --}}
+            <a href="#" onclick="closeNav()">Site Locations</a> {{!-- <a href="#">GE Digital</a> --}}
             <ul id='sitesList'>
                 <li>{{> siteManager }}</li>
             </ul>
@@ -25,38 +24,57 @@
 
 
         <script>
-                    var siteuid = "{{#each siteManager}}{{uuid}}{{/each}}";
-                    console.log(siteuid);
-                    $.ajax()
-                    document.getElementById("mySidenav").style.width = "250px";
-                    $("#listmessage").hide();
-                    function openNav() {
-                        $("#listmessage").hide();
-                        document.getElementById("mySidenav").style.width = "250px";
+            var listofsites = [];
+            var siteuid = "{{#each siteManager}}{{uuid}}{{/each}}";
 
+            $("#listmessage").click(function () {
+                var myuuid = localStorage.getItem("uuid");
+                $.ajax("http://localhost:3000/api/sites/" + myuuid, {
+                    type: "GET"
+                }).then(function (r) {
+                    //  var somedata = JSON.stringify(r);
+                    for (let i = 0; i < r.sites.length; i++) {
+                        listofsites.push(r.sites[i].siteaddress);
+                        $("#sitesList").append("<li><a id= "+ r.sites[i].siteid +">" + r.sites[i].siteaddress + "</a></li>");
                     }
-                    function closeNav() {
-                        $("#listmessage").show();
-                        document.getElementById("mySidenav").style.width = "0";
-                    }
+                    //var rshowonpage = JSON.parse(rshow);
+                    //   alert(listofsites);
+                });
+            });
 
+            // document.getElementById("mySidenav").style.width = "250px";
 
-                    const customerpage = function () {
+            function openNav() {
+                $("#listmessage").hide();
+                document.getElementById("mySidenav").style.width = "250px";
 
-                        $(".home").show();
-                        $(".admin").hide();
-                        $(".customer").hide();
-                        $(".site").hide();
-                        $(".index").hide();
-                        $(".login").hide();
-                        //Test
-                        $(".test").hide();
-                    };
-                    customerpage();
+            }
+            function closeNav() {
+                $("#listmessage").show();
+                document.getElementById("mySidenav").style.width = "0";
+            }
+
+            const customerpage = function () {
+
+                $(".home").show();
+                $(".admin").hide();
+                $(".customer").hide();
+                $(".site").hide();
+                $(".index").hide();
+                $(".login").hide();
+                //$("#mySidenav").hide();
+                //Test
+                $(".test").hide();
+            };
+            customerpage();
         </script>
 
     </div>
 </div>
+
+
+
+
 <div class="container">
     <div class="row">
         <div>
