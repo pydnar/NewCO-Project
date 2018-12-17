@@ -3,9 +3,9 @@ $(document).ready(function () {
 }); //End of document ready
 
 //Used for tests
-const loginValues = function (emailv, passwordv) {
+// const loginValues = function (emailv, passwordv) {
   
-}
+// }
 
 var fun = function(){
 
