@@ -26,8 +26,9 @@
         <script>
             var listofsites = [];
             var siteuid = "{{#each siteManager}}{{uuid}}{{/each}}";
-
             $("#listmessage").click(function () {
+                $("#sitesList").empty();
+
                 var myuuid = localStorage.getItem("uuid");
                 $.ajax("http://localhost:3000/api/sites/" + myuuid, {
                     type: "GET"
@@ -35,7 +36,7 @@
                     //  var somedata = JSON.stringify(r);
                     for (let i = 0; i < r.sites.length; i++) {
                         listofsites.push(r.sites[i].siteaddress);
-                        $("#sitesList").append("<li><a id= "+ r.sites[i].siteid +">" + r.sites[i].siteaddress + "</a></li>");
+                        $("#sitesList").append("<li><a class='location'>" + r.sites[i].siteaddress + "</a></li>");
                     }
                     //var rshowonpage = JSON.parse(rshow);
                     //   alert(listofsites);
@@ -43,6 +44,16 @@
             });
 
             // document.getElementById("mySidenav").style.width = "250px";
+            $(document).on("click", ".location", show_location_data_cb);
+
+            function show_location_data_cb() {
+                $("#setMap").empty();
+                $("#location").empty();
+                console.log(this);
+                console.log(this.text);
+                $("#setMap").append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + this.text + '&key=AIzaSyClE-i25aT8wlR70lQ4zrBNnQm2Dfmg2nQ" allowfullscreen></iframe>');
+                $("#location").text("Location: " + this.text);
+            }
 
             function openNav() {
                 $("#listmessage").hide();

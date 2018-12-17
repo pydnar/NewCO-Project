@@ -73,6 +73,7 @@ $(document).ready(() => {
         alert("You have been logged out");
         localStorage.clear();
         $('#submitSignout').hide();
+        window.location.href = "/"
       })
       .catch(function (error) {
         var errorC = error.code;

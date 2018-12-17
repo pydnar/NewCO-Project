@@ -45,7 +45,7 @@ router.get("/mysites", function (req, res) {
     // var state = JSON.stringify(states);
     // var ThisnameDoesnotmatter = { data: { findstates: state } };
     // var email = "dee.joe@jdjd.com";
-        var uid = 4;
+    var uuid = "bg0wty0JXUZmaPDD4Z9NduKpDW03";
     // model.all(function(data) {
     //     var insuranceObject = {
     //       users: data
@@ -65,10 +65,9 @@ router.get("/mysites", function (req, res) {
     //     }
     // });
      
-    console.log(req);
     console.log("UID ABOVE and UUID will be below:");
 
-    model.siteManager(uid, function(data) {
+    model.siteManager(uuid, function(data) {
         var siteManagerObject = {
             siteManager: data
         };

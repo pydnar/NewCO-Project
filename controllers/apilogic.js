@@ -26,7 +26,7 @@ router.get("/api/sites/:uuid", function (req, res) {
         };
         // console.log(listofSites);
         res.json(listofSites);
-
+        console.log(listofSites);
     });
 });
 
