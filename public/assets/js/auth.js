@@ -135,6 +135,6 @@ $(document).ready(() => {
 });
 
 //Used for tests
-const loginValues = function (emailv, passwordv) {
-  
+var loginValues = function (emailv, passwordv) {
+ return emailv; 
 }
