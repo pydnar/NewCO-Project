@@ -7,6 +7,7 @@ var model = require("../models/model.js");
 var states = require("simmigonstatespackage");
 
 
+
 router.get("/", function (req, res) {
     var ThisnameDoesnotmatter = { first: 'Megatron', last: 'Prime' };
 
@@ -21,6 +22,10 @@ router.get("/index", function (req, res) {
 router.get("/scanner", function (req, res) {
     res.render("scanner");
 });
+
+router.get("/siteassets", function (req, res){
+    res.render("siteassets")
+})
 
 router.get("/login", function (req, res) {
     res.render("login");
@@ -40,12 +45,15 @@ router.get("/admin", function (req, res) {
     res.render("admin");
 });
 
-router.get("/mysites", function (req, res) {
+router.get("/mysites/:uuid", function (req, res) {
 
     // var state = JSON.stringify(states);
     // var ThisnameDoesnotmatter = { data: { findstates: state } };
     // var email = "dee.joe@jdjd.com";
-    var uuid = "bg0wty0JXUZmaPDD4Z9NduKpDW03";
+    // var uuid = "bg0wty0JXUZmaPDD4Z9NduKpDW03";
+    var uuid = req.params.uuid;
+    console.log("This is the new unhard coded uuid " + uuid);
+    console.log(req.params);
     // model.all(function(data) {
     //     var insuranceObject = {
     //       users: data
@@ -74,7 +82,6 @@ router.get("/mysites", function (req, res) {
         res.render("mysites", siteManagerObject);
         console.log(siteManagerObject)
     });
-
 });
 
 router.get("/site", function (req, res) {

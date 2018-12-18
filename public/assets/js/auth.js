@@ -50,8 +50,9 @@ $(document).ready(() => {
         //Login, set user UUID
         localStorage.setItem("uid", currentuser.uid);
         localStorage.setItem("uuid", res.users[0].uuid);
+        var uuid = res.users[0].uuid;
           console.log("Data should be above!");
-          window.location.href = "/"
+          window.location.href = "/mysites/" + uuid;
         }); //End of ajax call
       })
       .catch(function (error) {
@@ -134,3 +135,8 @@ $(document).ready(() => {
   });
 
 });
+
+//Used for tests
+var loginValues = function (emailv) {
+  return emailv; 
+ }

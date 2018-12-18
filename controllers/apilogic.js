@@ -42,6 +42,7 @@ router.get("/api/getuser/:uid", function (req, res) {
         };
         console.log("from user " + uid);
 
+        console.log(JSON.stringify(uid));
         res.json(uid);
     });
 });
