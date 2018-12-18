@@ -39,7 +39,6 @@ $(document).ready(() => {
           uid: user.uid
         };
 //Need to define ROUTE for where user should land once authenticated.
-        alert(currentuser.uid);
         $.ajax("/api/getuser/" + currentuser.uid, {
           method: "GET",
           async: false,

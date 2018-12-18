@@ -70,6 +70,11 @@ module.exports  = {
     });
   },
 
+  selectAssetsWhere: function(uuid, cb) {
+    orm.selectWhere("assets", "uuid", uuid, function(res){
+      cb(res);
+    });
+  }
 };
 
 

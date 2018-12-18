@@ -48,10 +48,17 @@
         $("#reqister").hide();
         $(".home").hide();
         $(".admin").hide();
-        $(".mysite").show();
+        if (localStorage.getItem("uid") != null) {
+            $("#mysites").show();
+            $("#login").hide();
+        }
+        else {
+            $("#mysites").hide();
+            $("#login").show();
+        }
         $(".site").hide();
         $(".index").hide();
-        $(".login").hide();
+        $("#submitSignout").hide();
         //Test
         $(".test").hide();
     };
@@ -65,5 +72,10 @@
         alert("You clicked me!")
         var toastHTML = '<span>Your request for access has been submitted. Status: Pending</span></button>';
         M.toast({ html: toastHTML, classes: 'rounded' });
-    })
+    });
+
+    $("#mysites").click(function () {
+        var uuid = localStorage.getItem("uuid");
+        window.location.href = "/mysites/" + uuid;
+    });
 </script>

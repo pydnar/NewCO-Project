@@ -1,3 +1,9 @@
+$("#mysites").click(function () {
+    var uuid = localStorage.getItem("uuid");
+    window.location.href = "/mysites/" + uuid;
+});
+
+
 const hideform = function () {
     $(".index").hide();
     $(".home").hide();
@@ -11,6 +17,3 @@ const hideform = function () {
     }
 };
 hideform();
-
-
-

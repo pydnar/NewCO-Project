@@ -23,8 +23,17 @@ router.get("/scanner", function (req, res) {
     res.render("scanner");
 });
 
-router.get("/siteassets", function (req, res){
-    res.render("siteassets")
+router.get("/siteassets/:uuid", function (req, res){
+    var uuid = req.params.uuid;
+    console.log("This is the UUID we're sending to get assets on" + uuid);
+    model.selectAssetsWhere(uuid, function(data) {
+        var assets = {
+            siteassets: data
+        };
+        res.render("siteassets", assets);
+        console.log("Assets should be below this!");
+        console.log(assets);
+    })
 })
 
 router.get("/login", function (req, res) {
@@ -89,11 +98,6 @@ router.get("/site", function (req, res) {
     var state = JSON.stringify(states);
     var ThisnameDoesnotmatter = { data: { findstates: state } };
 
-    model.siteManager.person(function (data) {
-        var person = {
-            personData: data
-        }
-    });
     model.siteManager.site(function (data) {
         var sites = {
             siteData: data
