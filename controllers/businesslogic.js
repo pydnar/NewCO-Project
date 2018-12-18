@@ -23,7 +23,7 @@ router.get("/scanner", function (req, res) {
     res.render("scanner");
 });
 
-router.get("/siteassets/:uuid", function (req, res){
+router.get("/siteassets/:siteid", function (req, res){
     var uuid = req.params.uuid;
     console.log("This is the UUID we're sending to get assets on" + uuid);
     model.selectAssetsWhere(uuid, function(data) {

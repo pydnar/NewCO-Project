@@ -69,13 +69,13 @@ sheet that was causing format issues. --}} {{!--
     </div>
 
 </section>
-
+<br>
 <section class="container">
 
     <div>
-        <button type="button" class="btn btn-secondary" id="assetadd">Add to my site</button>
-        <input id="siteid" type="text">
+        <input id="siteid" type="text" value="Site ID:">
 
+        <button type="button" class="btn btn-secondary" id="assetadd">Add to my site</button>
     </div>
 
 
@@ -175,8 +175,8 @@ sheet that was causing format issues. --}} {{!--
             //$('#barcodetyperesultp').html(rshow);
             //location.reload();
         });
-    
-    
+
+
     });
 
 
@@ -211,12 +211,12 @@ sheet that was causing format issues. --}} {{!--
     };
 
     //  $("#assetadd").click(checkassets);
-/*
-    function checkassets() {
-
-        alert("you are adding this assets to a a site!");
-    };
- */
+    /*
+        function checkassets() {
+    
+            alert("you are adding this assets to a a site!");
+        };
+     */
 
 
     $("#assetadd").click(function (event) {
@@ -257,58 +257,58 @@ sheet that was causing format issues. --}} {{!--
         */
 
 
-            $.ajax("/api/scanner/" + newassets.serialno + "/" + newassets.siteid + "/" + newassets.catelogid + "/" + newassets.assetdescription + "/" + newassets.assetcost, {
-              type: "POST",
-            }).then(
-              function() {
+        $.ajax("/api/scanner/" + newassets.serialno + "/" + newassets.siteid + "/" + newassets.catelogid + "/" + newassets.assetdescription + "/" + newassets.assetcost, {
+            type: "POST",
+        }).then(
+            function () {
                 console.log("created new assets at the site!");
                 // Reload the page to get the updated list
-               // location.reload();
-              });
-          
-
-var siteupatecount = 0;
-var siteupdatecost;
-
-/*
-            $.ajax("/api/scannersitefind/" + newassets.siteid, {
-            type: "GET"
-            }).then(function (r) {
-            console.log(r);
-            //alert(r);
-            console.log("relementid");
-            siteupdatecount = r.sites[0].siteassetcount + 1;
-            siteupdatecost = r.sites[0].siteassetcost + newassets.assetcost;
-            console.log("site find to be updated with following");
-            console.log(siteupdatecost);
-            console.log(siteupdatecount);
+                // location.reload();
             });
-*/    
-            
 
-       
-            $.ajax("/api/scannersiteupdate/" + newassets.siteid + "/" + newassets.assetcost, {
-             type: "PUT",
+
+        var siteupatecount = 0;
+        var siteupdatecost;
+
+        /*
+                    $.ajax("/api/scannersitefind/" + newassets.siteid, {
+                    type: "GET"
+                    }).then(function (r) {
+                    console.log(r);
+                    //alert(r);
+                    console.log("relementid");
+                    siteupdatecount = r.sites[0].siteassetcount + 1;
+                    siteupdatecost = r.sites[0].siteassetcost + newassets.assetcost;
+                    console.log("site find to be updated with following");
+                    console.log(siteupdatecost);
+                    console.log(siteupdatecount);
+                    });
+        */
+
+
+
+        $.ajax("/api/scannersiteupdate/" + newassets.siteid + "/" + newassets.assetcost, {
+            type: "PUT",
             // data: {siteassetcount: siteupatecount}
-            }).then(function() {
+        }).then(function () {
             console.log("site updated is: ");
             console.log("updated id ", newassets.siteid);
             alert("Added to the site successfully!");
             // Reload the page to get the updated list
             //location.reload();
-            });
+        });
 
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          });
+
+
+
+
+
+
+
+
+
+
+    });
 
 
 
@@ -331,4 +331,3 @@ var siteupdatecost;
 
 <!-- <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script> -->
 <script src="assets/barcode/scale.fix.js"></script>
-<script src="scanner.js"></script>

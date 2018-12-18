@@ -70,8 +70,8 @@ module.exports  = {
     });
   },
 
-  selectAssetsWhere: function(uuid, cb) {
-    orm.selectWhere("assets", "uuid", uuid, function(res){
+  selectAssetsWhere: function(siteid, cb) {
+    orm.selectWhere("assets", "siteid", siteid, function(res){
       cb(res);
     });
   }
