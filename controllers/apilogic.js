@@ -30,7 +30,6 @@ router.get("/api/sites/:uuid", function (req, res) {
     });
 });
 
-
 router.get("/api/getuser/:uid", function (req, res) {
     var uid = req.params.uid;
     // console.log(uid);
@@ -62,7 +61,16 @@ router.get("/api/sitecost/:siteid", function (req, res) {
     });
 });
 
-
+router.post("/api/sites", function (req, res) {
+    console.log(Object.values(req.body));
+   
+    model.newSite([Object.keys(req.body)], [Object.values(req.body)], function (result) {
+      var assetdata = {
+        newSites: result
+      };
+      res.json( {id: 0} );
+    });
+  });
 
 router.get("/api/scanner/:catelogid", function (req, res) {
     var catelogid = req.params.catelogid;
@@ -125,22 +133,16 @@ router.post("/api/scanner/:serialno/:siteid/:catelogid/:assetdescription/:assetc
 });
 
 
-router.post("/api/assets", function (req, res) {
-    var newassets = Object.values(req.body);
-
-    console.log(newassets);
-
-    model.createassets([Object.keys(req.body)], [Object.values(req.body)], function (
-        result
-    ) {
-        var assetdata = {
-            assets: result
-        };
-
-        //res.json("/home/" + email[2]);
-    });
+router.post("/api/createSite/:siteaddress/:serviceSLA/:uuid/:siteassetcount/:siteassetcost", function (req, res) {
+    console.log(req.params);
+    model.addNewSite(
+        ["siteaddress", "serviceSLA", "uuid", "siteassetcount", "siteassetcost"]
+        , [
+            req.params.siteaddress, req.params.serviceSLA, req.params.uuid, req.params.siteassetcount, req.params.siteassetcost,
+        ], function (result) {
+            res.json({ id: result.insertId });
+        });
 });
-
 
 router.put("/api/scannersiteupdate/:siteid/:assetcost", function (req, res) {
     var condition = "siteid = " + req.params.siteid;
