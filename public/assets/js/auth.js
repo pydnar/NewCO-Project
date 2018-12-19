@@ -3,76 +3,77 @@ $(document).ready(() => {
 
   // Config for Firebase App
   var firebaseConfig = {
-    apiKey: "AIzaSyBa96oWMfmbWVq09zsFd90703oO_VSJtck",
-    authDomain: "project2auth.firebaseapp.com",
-    databaseURL: "https://project2auth.firebaseio.com",
-    projectId: "project2auth",
-    storageBucket: "project2auth.appspot.com",
-    messagingSenderId: "784148365615"
+    apiKey: "AIzaSyCimbU1-NaYNPz_sZFEOXOetAPLZjwo_do",
+    authDomain: "driven-rig-186815.firebaseapp.com",
+    databaseURL: "https://driven-rig-186815.firebaseio.com",
+    projectId: "driven-rig-186815",
+    storageBucket: "driven-rig-186815.appspot.com",
+    messagingSenderId: "742859722146"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   $("#submitLogin").click(function () {
     // Grab data from user form
     event.preventDefault();
     var email = $("#email").val();
-    console.log(email);
     var password = $("#password").val();
-    console.log(password);
 
     var values = {
       email,
       password
     };
     //
-    
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(function () {
-        console.log("You are login in");
+        console.log("You are now logged in");
 
         var user = firebase.auth().currentUser;
         currentuser = {
           email: user.email,
           uid: user.uid
         };
-        //Login with mail and save
-        localStorage.setItem("userprofile", currentuser.email);
-        // alert(localStorage.getItem("userprofile"));
-
-        $.ajax("/login/" + email + "/" + password, {
-          method: "POST",
+//Need to define ROUTE for where user should land once authenticated.
+        $.ajax("/api/getuser/" + currentuser.uid, {
+          method: "GET",
           async: false,
-
-          data: values
           //Init values are coming from the login
         }).then(function (res) {
-          //   userandassets = res;
-
-          window.location.href = "/home/" + localStorage.getItem("userprofile");
+        //Login, set user name
+        localStorage.setItem("username", res.users[0].firstname);
+        //Login, set user UUID
+        localStorage.setItem("uid", currentuser.uid);
+        localStorage.setItem("uuid", res.users[0].uuid);
+        var uuid = res.users[0].uuid;
+          console.log("Data should be above!");
+          window.location.href = "/mysites/" + uuid;
         }); //End of ajax call
       })
       .catch(function (error) {
         var errorC = error.code;
         var errorM = error.message;
         console.log(errorC, errorM);
-        $("#loginAlert").text("There is no user record corresponding to this");
+        $("#loginAlert").text("No Corresponding User Record Found.");
       });
+      
   });
 
   $("#submitSignout").click(function () {
     localStorage.removeItem("userprofile");
     $("username").val("");
-
     firebase
       .auth()
       .signOut()
       .then(function () {
-        // alert("You have been logged out");
-
-        window.location.href = "/";
+        alert("You have been logged out");
+        localStorage.clear();
+        $('#submitSignout').hide();
+        window.location.href = "/"
       })
       .catch(function (error) {
         var errorC = error.code;
@@ -133,7 +134,8 @@ $(document).ready(() => {
   });
 
 });
-//Used for test
-const loginTest = function (emailv, passwordv) {
-  //
-}
+
+//Used for tests
+var loginValues = function (emailv) {
+  return emailv; 
+ }

@@ -85,6 +85,34 @@ var orm = {
     );
   },
 
+  selectManager: function(tablevalue, colToSearch, valOfCol, callback) {
+    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+    var k = connection.query(
+      queryString,
+      [tablevalue, colToSearch, valOfCol],
+      function(err, result) {
+        if (err) {
+          throw err;
+        }
+        callback(result);
+      }
+    );
+  },
+
+  siteSelect: function(tablevalue, colToSearch, valOfCol, callback) {
+    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+    var k = connection.query(
+      queryString,
+      [tablevalue, colToSearch, valOfCol],
+      function(err, result) {
+        if (err) {
+          throw err;
+        }
+        callback(result);
+      }
+    );
+  },
+
   create: function(table, cols, vals, callback) {
     var queryString = "INSERT INTO " + table;
     console.log(`col:\n${cols}`);
@@ -139,6 +167,37 @@ var orm = {
       callback(result);
     });
   },
+
+
+  newupdate: function(table, objColVal1, objColVal2, value1, value2, condition, cb) {
+    var queryString = "UPDATE " + table;
+
+    queryString += " SET ";
+    queryString += objColVal1;
+    queryString += " = ";
+    queryString += objColVal1;
+    queryString += " + ";
+    queryString += value1;
+    queryString += ", ";
+    queryString += objColVal2;
+    queryString += " = ";
+    queryString += objColVal2;
+    queryString += " + ";
+    queryString += value2;
+    queryString += " WHERE ";
+    queryString += condition;
+
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  },
+
+
 
   delete: function(table, condition, callback) {
     var queryString = "DELETE FROM " + table;

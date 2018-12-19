@@ -1,31 +1,50 @@
-USE c9tbk1oei4eajy1s;
+use w5s7t3uky0jc219r;
+
+DROP TABLE assets;
+DROP TABLE catelog;
+DROP TABLE sites;
+DROP TABLE users;
 
 CREATE TABLE users (
-
-id_email VARCHAR(255),
-firstname VARCHAR(50),
-lastname VARCHAR(50),
-phone VARCHAR(20),
-address VARCHAR(255),
-isagent BOOLEAN DEFAULT false,
-userpassword varchar(50),
-PRIMARY KEY (id_email)
-
+  uuid INTEGER NOT NULL AUTO_INCREMENT,
+  firstname VARCHAR(20),
+  lastname VARCHAR(20),
+  issitemgr BOOLEAN DEFAULT false,
+  isadmin BOOLEAN DEFAULT false,
+  email VARCHAR(255),
+  uid VARCHAR(255),
+  PRIMARY KEY (uuid)
 );
 
-
-CREATE TABLE homeassets (
-
-id INTEGER AUTO_INCREMENT,
-itemname VARCHAR(100),
-custunitvalue DOUBLE(20,2),
-id_email VARCHAR(50),
-amazonunitvalue DOUBLE(20,2),
-quantity INTEGER,
-totalcustvalue DOUBLE(20,2),
-totalamazonvalue DOUBLE(20,2),
-image VARCHAR(255),
-PRIMARY KEY (id),
-FOREIGN KEY fk_id(id_email)
-REFERENCES users(id_email)
+CREATE TABLE catelog (
+  catelogid NUMERIC(7,0) NOT NULL,
+  catelogname VARCHAR(20),
+  model VARCHAR(50),
+  brand VARCHAR(50),
+  cost DECIMAL(64, 2),
+  catelogdescription VARCHAR(255),
+  PRIMARY KEY (catelogid)
 );
+
+CREATE TABLE sites (
+  siteid INTEGER NOT NULL AUTO_INCREMENT,
+  siteaddress VARCHAR(255),
+  serviceSLA VARCHAR(50),
+  uuid INTEGER,
+  PRIMARY KEY (siteid),
+  FOREIGN KEY (uuid) REFERENCES users(uuid)
+);
+
+CREATE TABLE assets (
+  serialno VARCHAR(255) NOT NULL,
+  siteid INTEGER,
+  catelogid NUMERIC(7,0),
+  uuid INTEGER,
+  assetdescription VARCHAR(255),
+  assetcost NUMERIC (10,2) NOT NULL,
+  PRIMARY KEY (serialno),
+  FOREIGN KEY (uuid) REFERENCES users(uuid),
+  FOREIGN KEY (siteid) REFERENCES sites(siteid),
+  FOREIGN KEY (catelogid) REFERENCES catelog(catelogid)
+);
+

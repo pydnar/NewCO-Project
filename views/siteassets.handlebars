@@ -1,0 +1,39 @@
+{{> nav }}
+
+<table class="bordered highlight responsive-table">
+    <tr>
+        <th>Serial</th>
+        <th>Catelog #</th>
+        <th>Description</th>
+        <th>Cost</th>
+
+
+    </tr>
+    <tbody>
+
+        {{#each siteassets}}
+        <tr id="{{this.siteid}}">{{> users/assets}}</tr>
+        {{/each}}
+
+    </tbody>
+</table>
+<script>
+    const customerpage = function () {
+
+        $(".home").show();
+        $(".admin").hide();
+        $(".customer").hide();
+        $(".site").hide();
+        $(".index").hide();
+        $(".login").hide();
+        //$("#mySidenav").hide();
+        //Test
+        $(".test").hide();
+    };
+    customerpage();
+    
+    $("#mysites").click(function () {
+    var uuid = localStorage.getItem("uuid");
+    window.location.href = "/mysites/" + uuid;
+});
+</script>

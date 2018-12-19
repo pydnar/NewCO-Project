@@ -2,42 +2,110 @@
 var express = require("express");
 
 var router = express.Router();
-
+//var store = require("store");
 var model = require("../models/model.js");
 var states = require("simmigonstatespackage");
 
 
-router.get("/", function (req, res) {
 
-    var ThisnameDoesnotmatter = { Lastname: 'Megatron' };
+router.get("/", function (req, res) {
+    var ThisnameDoesnotmatter = { first: 'Megatron', last: 'Prime' };
+
     res.render("index", ThisnameDoesnotmatter);
+
 });
 
 router.get("/index", function (req, res) {
     res.render("index");
 });
 
+router.get("/scanner", function (req, res) {
+    res.render("scanner");
+});
+
+router.get("/siteassets/:siteid", function (req, res){
+    var uuid = req.params.uuid;
+    console.log("This is the UUID we're sending to get assets on" + uuid);
+    model.selectAssetsWhere(uuid, function(data) {
+        var assets = {
+            siteassets: data
+        };
+        res.render("siteassets", assets);
+        console.log("Assets should be below this!");
+        console.log(assets);
+    })
+})
+
 router.get("/login", function (req, res) {
     res.render("login");
 });
 
 router.get("/home", function (req, res) {
+    //   model.sites.all(function(data) {
+    //     var siteData = {
+    //       site: data
+    //     }
+    //     console.log(siteData);
     res.render("home");
 });
+
 
 router.get("/admin", function (req, res) {
     res.render("admin");
 });
 
-router.get("/customer", function (req, res) {
-    res.render("customer");
+router.get("/mysites/:uuid", function (req, res) {
+
+    // var state = JSON.stringify(states);
+    // var ThisnameDoesnotmatter = { data: { findstates: state } };
+    // var email = "dee.joe@jdjd.com";
+    // var uuid = "bg0wty0JXUZmaPDD4Z9NduKpDW03";
+    var uuid = req.params.uuid;
+    console.log("This is the new unhard coded uuid " + uuid);
+    console.log(req.params);
+    // model.all(function(data) {
+    //     var insuranceObject = {
+    //       users: data
+    //     };
+    // model.siteManager.person(email, uuid, function (data) {
+    //     var person = {
+    //         personData: data
+    //     }
+    //     var ThisnameDoesnotmatter = { person };
+    //     console.log(ThisnameDoesnotmatter);
+    //     res.render("customer", insuranceObject);
+    //     console.log(insuranceObject)
+    // });
+    // model.siteManager.sites(function(data){
+    //     var sites = {
+    //         siteData: data
+    //     }
+    // });
+     
+    console.log("UID ABOVE and UUID will be below:");
+
+    model.siteManager(uuid, function(data) {
+        var siteManagerObject = {
+            siteManager: data
+        };
+        res.render("mysites", siteManagerObject);
+        console.log(siteManagerObject)
+    });
 });
 
 router.get("/site", function (req, res) {
 
     var state = JSON.stringify(states);
-    var ThisnameDoesnotmatter = { findstates: state };
+    var ThisnameDoesnotmatter = { data: { findstates: state } };
 
+    model.siteManager.site(function (data) {
+        var sites = {
+            siteData: data
+        }
+    });
+
+    var ThisnameDoesnotmatter = { person, sites };
+    console.log(ThisnameDoesnotmatter);
     res.render("site", ThisnameDoesnotmatter);
 });
 

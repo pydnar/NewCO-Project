@@ -1,7 +1,7 @@
 // Data 
 var orm = require("../config/orm.js");
 
-var users = {
+module.exports  = {
   all: function (cb) {
     orm.all("users", function (res) {
       cb(res);
@@ -22,12 +22,74 @@ var users = {
       cb(res);
     });
   },
-  selectUser: function (id, cb) {
-    orm.selectUser("users", "id", id, function (res) {
+  // selectUser: function (users, cb) {
+  //   orm.selectUser("users", "id", id, function (res) {
+  //     cb(res);
+  //   });
+  // },
+  selectUser: function (uuid, cb) {
+    orm.selectUser("sites", "uuid", uuid, function (res) {
       cb(res);
     });
   },
+  selectItem: function (catelogid, cb) {
+    orm.selectUser("catelog", "catelogid", catelogid, function (res) {
+      cb(res);
+    });
+  },
+  selectSiteNew: function (siteid, cb) {
+    orm.selectUser("sites", "siteid", siteid, function (res) {
+      cb(res);
+    });
+  },
+
+  siteManager: function (uid, cb) {
+    orm.selectManager("users", "uid", uid, function (res) {
+      cb(res);
+    });
+  },
+  selectUserUUID: function (uid, cb) {
+    orm.selectManager("users", "uid", uid, function (res) {
+      cb(res);
+    });
+  },
+  selectSites: function (condition, cb) {
+    orm.siteSelect("sites", condition, function (res) {
+      cb(res);
+    });
+  },
+  createassets: function (cols, vals, cb) {
+    orm.create("assets", cols, vals, function (res) {
+      cb(res);
+    });
+  },
+
+  updatesitecost: function(newassetcost, condition, cb) {
+    orm.newupdate("sites", "siteassetcount", "siteassetcost", "1", newassetcost, condition, function(res) {
+      cb(res);
+    });
+  },
+
+  selectAssetsWhere: function(siteid, cb) {
+    orm.selectWhere("assets", "siteid", siteid, function(res){
+      cb(res);
+    });
+  }
 };
 
-module.exports = users;
+
+
+// var siteManager = {
+//   person: function (uuid, cb) {
+//     orm.selectUser("users", "email", uuid, function (res) {
+//       cb(res);
+//     });
+//   },
+//   sites: function (uuid, cb) {
+//     orm.all("sites", uuid, function (res) {
+//       cb(res);
+//     });
+//   },
+
+
 

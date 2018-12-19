@@ -2,9 +2,10 @@
 <div class="container">
     <h3>Login</h3>
     <div class="col s12 logindiv">
+        <div id="loginAlert"></div>
         <form id="form_data">
 
-          
+
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" id="email">
@@ -26,10 +27,11 @@
 
         $(".home").show();
         $(".admin").hide();
-        $(".customer").hide();
+        $("#mysites").hide();
         $(".site").hide();
         $(".index").hide();
         $(".login").hide();
+        $("#submitSignout").hide();
         //Test
         $(".test").hide();
     };

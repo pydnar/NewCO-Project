@@ -1,11 +1,44 @@
 {{> nav }} {{> indexsection }}
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <div id="reqister" class="container">
-    <div class="col s12">
-        <h3>MY Site</h3>
-        <h3>My Mananger</h3>
-        <h3>My location</h3>
-        <h3>My SSO</h3>
+    <h1 class="header center grey-text text-darken-4">Access Request Form</h1>
+    <div id="reqister" class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Last Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">Manager's Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_balance</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">SSO</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_box</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">Site Location</label>
+                </div>
+            </div>
+        </form>
     </div>
+    <button id="accessreq" class="btn btn-default right" type="submit">Submit
+        </i><i class="material-icons right">send</i>
+    </button>
 </div>
 
 
@@ -15,10 +48,17 @@
         $("#reqister").hide();
         $(".home").hide();
         $(".admin").hide();
-        $(".customer").show();
+        if (localStorage.getItem("uid") != null) {
+            $("#mysites").show();
+            $("#login").hide();
+        }
+        else {
+            $("#mysites").hide();
+            $("#login").show();
+        }
         $(".site").hide();
         $(".index").hide();
-        $(".login").hide();
+        $("#submitSignout").hide();
         //Test
         $(".test").hide();
     };
@@ -28,5 +68,14 @@
     $("#reg-site").on("click", function () {
         $("#reqister").toggle();
     });
+    $("#accessreq").on("click", function () {
+        alert("You clicked me!")
+        var toastHTML = '<span>Your request for access has been submitted. Status: Pending</span></button>';
+        M.toast({ html: toastHTML, classes: 'rounded' });
+    });
 
+    $("#mysites").click(function () {
+        var uuid = localStorage.getItem("uuid");
+        window.location.href = "/mysites/" + uuid;
+    });
 </script>

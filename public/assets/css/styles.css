@@ -47,7 +47,7 @@ body {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 11px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -68,4 +68,13 @@ body {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+
+.btn {
+  background-color: blue;
+}
+
+.btn:hover {
+  background-color: lightskyblue;
 }
