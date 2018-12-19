@@ -9,10 +9,8 @@ var states = require("simmigonstatespackage");
 
 
 router.get("/", function (req, res) {
-    var ThisnameDoesnotmatter = { first: 'Megatron', last: 'Prime' };
 
-    res.render("index", ThisnameDoesnotmatter);
-
+    res.render("index");
 });
 
 router.get("/index", function (req, res) {

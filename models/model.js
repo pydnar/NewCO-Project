@@ -32,6 +32,11 @@ module.exports  = {
       cb(res);
     });
   },
+  addNewSite: function (cols, vals, cb) {
+    orm.create("sites", cols, vals, function (res) {
+      cb(res);
+    });
+  },
   selectItem: function (catelogid, cb) {
     orm.selectUser("catelog", "catelogid", catelogid, function (res) {
       cb(res);

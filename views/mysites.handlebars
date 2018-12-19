@@ -24,7 +24,7 @@
 
 
         <script>
-            if (localStorage.getItem("uuid") == null){
+            if (localStorage.getItem("uuid") == null) {
                 alert("You have not logged in.")
                 window.location.href = "/home"
             }
@@ -59,6 +59,13 @@
                 localStorage.setItem("siteaddress", this.text);
                 $("#setMap").append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + this.text + '&key=AIzaSyClE-i25aT8wlR70lQ4zrBNnQm2Dfmg2nQ" allowfullscreen></iframe>');
                 $("#location").text("Location: " + this.text);
+                $.ajax("http://localhost:3000/api/scannersitefind/" + localStorage.getItem("siteid"), {
+                    type: "GET"
+                }).then(function (r) {
+                    $("#items").text("Total Items: " + r.sites[0].siteassetcount);
+                    $("#cost").text("Cost: " + r.sites[0].siteassetcost);
+                    $("#serviceSLA").text("Service SLA: " + r.sites[0].serviceSLA);
+                });
             }
 
             function openNav() {
@@ -104,8 +111,8 @@
     </div>
     <script>
         $("#siteassets").click(function () {
-            if (localStorage.getItem("siteid") != null){
-             window.location.href = "/siteassets/" + localStorage.getItem("siteid");
+            if (localStorage.getItem("siteid") != null) {
+                window.location.href = "/siteassets/" + localStorage.getItem("siteid");
             };
         });
     </script>
