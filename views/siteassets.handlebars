@@ -1,23 +1,36 @@
 {{> nav }}
 
-<table class="bordered highlight responsive-table">
-    <tr>
-        <th>Serial</th>
-        <th>Catelog #</th>
-        <th>Description</th>
-        <th>Cost</th>
+<div class='container'>
+    <div class='row'></div>
+    <div class='row'>
+        <p id='siteaddress'>The below assets are for site located at: </p>
+    </div>
+    <div class='row'>
+        <table class="bordered highlight responsive-table">
+            <tr>
+                <th>Serial</th>
+                <th>Catelog ID #</th>
+                <th>Description</th>
+                <th>Cost</th>
 
 
-    </tr>
-    <tbody>
+            </tr>
+            <tbody>
 
-        {{#each siteassets}}
-        <tr id="{{this.siteid}}">{{> users/assets}}</tr>
-        {{/each}}
+                {{#each siteassets}}
+                <tr id="{{this.siteid}}">{{> users/assets}}</tr>
+                {{/each}}
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script>
+    if (localStorage.getItem("uuid") == null) {
+        alert("You have not logged in.")
+        window.location.href = "/home"
+    }
     const customerpage = function () {
 
         $(".home").show();
@@ -31,9 +44,11 @@
         $(".test").hide();
     };
     customerpage();
-    
+
     $("#mysites").click(function () {
-    var uuid = localStorage.getItem("uuid");
-    window.location.href = "/mysites/" + uuid;
-});
+        var uuid = localStorage.getItem("uuid");
+        window.location.href = "/mysites/" + uuid;
+    });
+    var siteaddress = localStorage.getItem("siteaddress");
+    $("#siteaddress").append(siteaddress);
 </script>

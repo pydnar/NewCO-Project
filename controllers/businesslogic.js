@@ -24,9 +24,8 @@ router.get("/scanner", function (req, res) {
 });
 
 router.get("/siteassets/:siteid", function (req, res){
-    var uuid = req.params.uuid;
-    console.log("This is the UUID we're sending to get assets on" + uuid);
-    model.selectAssetsWhere(uuid, function(data) {
+    var siteid = req.params.siteid;
+    model.selectAssetsWhere(siteid, function(data) {
         var assets = {
             siteassets: data
         };
@@ -98,15 +97,7 @@ router.get("/site", function (req, res) {
     var state = JSON.stringify(states);
     var ThisnameDoesnotmatter = { data: { findstates: state } };
 
-    model.siteManager.site(function (data) {
-        var sites = {
-            siteData: data
-        }
-    });
-
-    var ThisnameDoesnotmatter = { person, sites };
-    console.log(ThisnameDoesnotmatter);
-    res.render("site", ThisnameDoesnotmatter);
+    res.render("site", ThisnameDoesnotmatter.data);
 });
 
 // Step 2 add the controller for the page: step 1 is in the /partial/users/nav folder

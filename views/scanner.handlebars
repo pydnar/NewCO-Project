@@ -20,6 +20,10 @@ sheet that was causing format issues. --}} {{!--
     <![endif]-->
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 <script>
+    if (localStorage.getItem("uuid") == null) {
+        alert("You have not logged in.")
+        window.location.href = "/home"
+    }
     var host = "serratus.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:")) {
         window.location.protocol = "https";
@@ -57,10 +61,10 @@ sheet that was causing format issues. --}} {{!--
 </section>
 <div class="container">
 
-    <button type="button" class="btn btn-secondary" style="width:120px;height:40px;"  id="assetcheck">Find Asset</button>
+    <button type="button" class="btn btn-secondary" style="width:120px;height:40px;" id="assetcheck">Find Asset</button>
     <div id="barcodetyperesult"></div>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div>
         <input id="siteid" type="text" value="Site ID:" style="width:220px;height:46px;">
         <br>

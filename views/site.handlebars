@@ -336,6 +336,10 @@
 
 
 <script>
+    if (localStorage.getItem("uuid") == null) {
+        alert("You have not logged in.")
+        window.location.href = "/home"
+    }
     $(document).ready(function () {
         //from server to client
         var states = "{{ findstates }}";
@@ -372,5 +376,10 @@
         $(".test").hide();
     };
     sitepage();
+
+    $("#mysites").click(function () {
+        var uuid = localStorage.getItem("uuid");
+        window.location.href = "/mysites/" + uuid;
+    });
 
 </script>

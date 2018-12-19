@@ -24,6 +24,10 @@
 
 
         <script>
+            if (localStorage.getItem("uuid") == null){
+                alert("You have not logged in.")
+                window.location.href = "/home"
+            }
             var listofsites = [];
             var siteuid = "{{#each siteManager}}{{uuid}}{{/each}}";
             $("#listmessage").click(function () {
@@ -52,6 +56,7 @@
                 console.log(this);
                 console.log(this.text);
                 localStorage.setItem("siteid", this.id);
+                localStorage.setItem("siteaddress", this.text);
                 $("#setMap").append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + this.text + '&key=AIzaSyClE-i25aT8wlR70lQ4zrBNnQm2Dfmg2nQ" allowfullscreen></iframe>');
                 $("#location").text("Location: " + this.text);
             }
@@ -100,7 +105,7 @@
     <script>
         $("#siteassets").click(function () {
             if (localStorage.getItem("siteid") != null){
-            window.location.href = "/siteassets/" + localStorage.getItem("siteid");
+             window.location.href = "/siteassets/" + localStorage.getItem("siteid");
             };
         });
     </script>
