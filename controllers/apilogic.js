@@ -61,7 +61,16 @@ router.get("/api/sitecost/:siteid", function (req, res) {
     });
 });
 
-
+router.post("/api/sites", function (req, res) {
+    console.log(Object.values(req.body));
+   
+    model.newSite([Object.keys(req.body)], [Object.values(req.body)], function (result) {
+      var assetdata = {
+        newSites: result
+      };
+      res.json( {id: 0} );
+    });
+  });
 
 router.get("/api/scanner/:catelogid", function (req, res) {
     var catelogid = req.params.catelogid;

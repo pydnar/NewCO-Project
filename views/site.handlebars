@@ -85,23 +85,23 @@
 
     $("#formadd").on("click", function (event) {
         event.preventDefault();
-        alert("Submit");
-        var a = $("#address-line1").val().trim();
-        var c = $("#city").val().trim();
-        var s = $("region").val().trim();
-        var p = $("#postal-code").val().trim();
+
+        var a = $("#address-line1").val().trim() + " " + $("#city").val().trim() + " " + $("region").val().trim() + " " + $("#postal-code").val().trim();
+        var uuid = localStorage.getItem("uuid");
+
         var newSite = {
-            address : a,
-            city : c,
-            region : s,
-            postcode : p,
-            uuid : localStorage.getItem("uuid")
+            address: a,
+            uuid:
         }
-        $.ajax("/api/addSite" {
-            type: "POST"
-        }).then(function (r) {
-            alert("Site Added");
-        };
+
+        $.ajax("/api/sites", {
+            type: "POST",
+            data: newItem
+        }).then(function () {
+            // Reload the page to get the updated list
+            location.reload("/home");
+        });
+
     });
 
     $("#formclear").on("click", function (event) {

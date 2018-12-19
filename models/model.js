@@ -12,6 +12,11 @@ module.exports  = {
       cb(res);
     });
   },
+  newSite: function (cols, vals, cb) {
+    orm.create("sites", cols, vals, function (res) {
+      cb(res);
+    });
+  },
   update: function (objColVals, condition, cb) {
     orm.update("users", objColVals, condition, function (res) {
       cb(res);

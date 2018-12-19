@@ -319,6 +319,10 @@ sheet that was causing format issues. --}} {{!--
     };
     homepage();
 
+    $("#mysites").click(function () {
+        var uuid = localStorage.getItem("uuid");
+        window.location.href = "/mysites/" + uuid;
+    });
 </script>
 
 
